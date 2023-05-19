@@ -1,0 +1,27 @@
+version: '3'
+services:
+  api:
+    container_name: api
+    restart: always
+    build: .
+    ports:
+      - "80:8080"
+    environment:
+      spring_profiles_active: docker
+      MONGO_URL: mongodb://user:pass@mongodb
+    depends_on:
+      - mongodb
+
+  mongodb:
+    container_name: mongodb
+    restart: always
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    volumes:
+      - type: bind
+        source: ./mongodata
+        target: /mongodata/db
