@@ -9,9 +9,9 @@ export class Board {
       const row: Cell[] = []
       for (let j = 0; j < 8; j++) {
         if ((i + j) % 2) {
-          row.push(new Cell(j, i, Colors.BLACK))
+          row.push(new Cell(j, i, Colors.BLACK, this, null))
         } else {
-          row.push(new Cell(j, i, Colors.WHITE))
+          row.push(new Cell(j, i, Colors.WHITE, this, null))
         }
       }
       this.cells.push(row)
