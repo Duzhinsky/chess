@@ -4,7 +4,7 @@ import { Colors } from "./Colors"
 export class Board {
   cells: Cell[][] = []
 
-  public initCells() {
+  private initCells() {
     for (let i = 0; i < 8; i++) {
       const row: Cell[] = []
       for (let j = 0; j < 8; j++) {
@@ -16,5 +16,9 @@ export class Board {
       }
       this.cells.push(row)
     }
+  }
+
+  constructor() {
+    this.initCells()
   }
 }
