@@ -24,7 +24,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springdoc:springdoc-openapi-ui:1.7.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
     implementation(project(":game-core"))
     implementation(project(":data"))
     compileOnly("org.projectlombok:lombok")
