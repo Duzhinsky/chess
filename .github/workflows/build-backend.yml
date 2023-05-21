@@ -25,5 +25,7 @@ jobs:
       - name: ls
         run: ls -al
       - run: cd api/
+      - run: ls -al
+      - run: chmod +x ./gradlew
       - name: Execute Gradle build
         run: ./gradlew build
