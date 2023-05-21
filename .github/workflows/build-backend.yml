@@ -24,6 +24,6 @@ jobs:
         run: pwd
       - name: ls
         run: ls -al
+      - run: cd api/
       - name: Execute Gradle build
-        run: gradlew build
-        working-directory: api
+        run: ./gradlew build
