@@ -2,7 +2,7 @@ package duzhinsky.chess.data.session;
 
 public enum SessionStatus {
     CREATED,
-    WAITING_PLAYER,
+    SEARCHING_OPPONENT,
     ACTIVE,
     CANCELLED,
     FINISHED

@@ -52,7 +52,7 @@ public class SessionManager {
                     .allMatch(movePart ->
                         movePart.figureDto().type() == persistedPart.getFigure().getType()
                         && movePart.figureDto().color() == persistedPart.getFigure().getColor()
-                        && movePart.to() == persistedPart.getTo()
+                        && movePart.to().toPosition().equals(persistedPart.getTo())
                     )
             );
 

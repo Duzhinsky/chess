@@ -1,9 +1,12 @@
 package duzhinsky.chess.api.coreDto;
 
 import duzhinsky.chess.data.game.move.CompositeMove;
+import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
 
 public record CompositeMoveDto(
+
+    @NotEmpty
     List<MovePartDto> moves
 ) {
 
