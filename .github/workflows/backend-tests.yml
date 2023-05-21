@@ -1,9 +1,11 @@
-name: Build java backend
+name: Backend PR test
 
 on:
   pull_request:
     paths:
       - 'api/**'
+      - '!api/gradlew'
+      - '!api/gradle/**'
 
 jobs:
   build-gradle-project:
@@ -16,14 +18,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Setup Gradle
+      - name: Set up Gradle
         uses: gradle/gradle-build-action@v2
-      - name: Pwd
-        run: pwd
-      - run: ls -al
-        working-directory: ./api
-      - run: chmod +x ./gradlew
-        working-directory: ./api
       - name: Execute Gradle build
         working-directory: ./api
-        run: ./gradlew build
+        run: ./gradlew test
