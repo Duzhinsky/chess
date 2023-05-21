@@ -22,7 +22,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
       - name: Pwd
         run: pwd
-      - run: ls- al
+      - run: ls -al
         working-directory: ./api
       - run: chmod +x ./gradlew
         working-directory: ./api
