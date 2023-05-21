@@ -25,5 +25,5 @@ jobs:
       - name: ls
         run: ls -al
       - name: Execute Gradle build
-        run: ./gradlew build
-        working-directory: 'api'
+        run: gradlew build
+        working-directory: api
