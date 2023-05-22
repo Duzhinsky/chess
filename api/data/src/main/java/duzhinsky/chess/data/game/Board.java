@@ -21,11 +21,15 @@ public class Board {
 
     private Map<Position, Figure> figures;
 
-    public Board(List<Figure> figures) {
+    public Board(int iteration, List<Figure> figures) {
         this(
-            0,
+            iteration,
             figures.stream().collect(Collectors.toMap(Figure::getPosition, Function.identity()))
         );
+    }
+
+    protected Board(List<Figure> figures) {
+        this(0, figures);
     }
 
     public Optional<Figure> getFigure(Position pos) {
