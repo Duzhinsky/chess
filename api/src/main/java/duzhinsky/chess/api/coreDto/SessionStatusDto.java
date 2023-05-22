@@ -1,19 +1,22 @@
 package duzhinsky.chess.api.coreDto;
 
+import duzhinsky.chess.data.session.Session;
 import duzhinsky.chess.data.session.SessionStatus;
 
 public enum SessionStatusDto {
-    CREATED(SessionStatus.CREATED),
-    SEARCHING_OPPONENT(SessionStatus.SEARCHING_OPPONENT),
-    YOUR_MOVE(null),
-    OPPONENT_MOVE(null),
-    CANCELLED(SessionStatus.CANCELLED),
-    FINISHED(SessionStatus.FINISHED);
-
-    private final SessionStatus statusMapping;
-
-    SessionStatusDto(SessionStatus statusMapping) {
-        this.statusMapping = statusMapping;
+    CREATED,
+    SEARCHING_OPPONENT,
+    YOUR_MOVE,
+    OPPONENT_MOVE,
+    CANCELLED,
+    FINISHED;
+    
+    public static SessionStatusDto fromSession(Session session, String playerId) {
+        return session.getSessionStatus() == SessionStatus.ACTIVE 
+            ? (
+                session.getPlayers().get(session.getActingColor()).equals(playerId)
+                    ? YOUR_MOVE
+                    : OPPONENT_MOVE
+            ) : SessionStatusDto.valueOf(session.getSessionStatus().toString());
     }
-
 }
