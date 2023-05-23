@@ -1,3 +1,4 @@
 rootProject.name = "api"
-include("game-core")
-include("data")
+include("core")
+include("wsserver")
+include("main")

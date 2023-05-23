@@ -1,0 +1,34 @@
+version: '3'
+services:
+
+  main-test:
+    profiles:
+      - test
+    env_file: .env
+    container_name: main-test
+    build:
+      context: ../
+      dockerfile: main/Dockerfile
+    ports:
+      - "80:8080"
+    environment:
+      MONGO_URI: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb-test
+    depends_on:
+      - mongodb-test
+
+  mongodb-test:
+    profiles:
+      - test
+    env_file: .env
+    container_name: mongodb-test
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    volumes:
+      - type: bind
+        source: ./mongodata
+        target: /data/db
