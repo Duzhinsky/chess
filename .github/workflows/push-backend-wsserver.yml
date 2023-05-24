@@ -1,4 +1,4 @@
-name: Publish main image
+name: Publish wsserver image
 
 on:
   push:
