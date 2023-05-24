@@ -20,6 +20,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker image
         working-directory: ./api/
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/chess-wsserver:prod . -f .\wsserver\Dockerfile
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/chess-wsserver:prod . -f ./wsserver/Dockerfile
       - name: Push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/chess-wsserver:prod
