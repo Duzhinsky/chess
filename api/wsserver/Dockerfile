@@ -1,7 +1,7 @@
 FROM gradle:7.6-jdk17 AS build
 COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src/wsserver
-RUN gradle build --no-daemon
+WORKDIR /home/gradle/src/
+RUN gradle :wsserver:build --no-daemon
 
 FROM openjdk:17
 

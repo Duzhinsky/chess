@@ -3,6 +3,8 @@ plugins {
     id("org.springframework.boot") version "3.0.0"
 }
 
+tasks.findByName("jar")?.enabled = false
+
 dependencies {
     implementation(project(":core"))
     compileOnly("org.projectlombok:lombok")

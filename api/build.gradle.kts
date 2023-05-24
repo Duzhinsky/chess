@@ -13,9 +13,6 @@ subprojects {
     val java : JavaPluginExtension? = extensions.findByType(JavaPluginExtension::class);
     java?.sourceCompatibility = JavaVersion.VERSION_17;
 
-    // Disable creating jar without dependencies
-    tasks.findByName("jar")?.enabled = false;
-
     tasks.withType<Test> {
         useJUnitPlatform()
     }
