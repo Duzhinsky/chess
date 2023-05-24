@@ -6,11 +6,6 @@ on:
       - master
     paths:
       - 'api/main/**'
-  pull_request:
-    types:
-      - closed
-    branches:
-      - master
 
 jobs:
   build-and-push:
