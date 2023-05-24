@@ -1,33 +1,33 @@
 version: '3'
 services:
 
-  main-test:
+  main-dev:
     profiles:
-      - test
+      - dev
     env_file: .env
-    container_name: main-test
+    container_name: main-dev
     build:
       context: ../
       dockerfile: main/Dockerfile
     ports:
       - "80:8080"
     environment:
-      MONGO_URI: ${MONGO_URI}
+      MONGO_URI: mongodb://${DEV_MONGO_USERNAME}:${DEV_MONGO_PASSWORD}@mongodb-dev
     depends_on:
-      - mongodb-test
+      - mongodb-dev
 
-  mongodb-test:
+  mongodb-dev:
     profiles:
-      - test
+      - dev
     env_file: .env
-    container_name: mongodb-test
+    container_name: mongodb-dev
     image: mongo:latest
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: ${DEV_MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DEV_MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DEV_MONGO_DATABASE}
     volumes:
       - type: bind
         source: ./mongodata
