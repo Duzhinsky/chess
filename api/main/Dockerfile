@@ -1,9 +1,9 @@
-FROM gradle:7.6-jdk17-alpine AS build
+FROM gradle:7.6-jdk17 AS build
 COPY --chown=gradle:gradle ../ /home/gradle/src
 WORKDIR /home/gradle/src/main
 RUN gradle build --no-daemon
 
-FROM openjdk:17-alpine
+FROM openjdk:17
 
 EXPOSE 8080
 RUN mkdir /app
