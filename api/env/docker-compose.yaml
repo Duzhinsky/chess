@@ -10,9 +10,26 @@ services:
       context: ../
       dockerfile: main/Dockerfile
     ports:
-      - "80:8080"
+      - "81:8080"
     environment:
-      MONGO_URI: mongodb://${DEV_MONGO_USERNAME}:${DEV_MONGO_PASSWORD}@mongodb-dev
+      MONGO_URI: ${DEV_MONGO_URI}
+      MONGO_DATABASE: ${DEV_MONGO_DATABASE}
+    depends_on:
+      - mongodb-dev
+
+  wsserver-dev:
+    profiles:
+      - dev
+    env_file: .env
+    container_name: wsserver-dev
+    build:
+      context: ../
+      dockerfile: wsserver/Dockerfile
+    ports:
+      - "82:8080"
+    environment:
+      MONGO_URI: ${DEV_MONGO_URI}
+      MONGO_DATABASE: ${DEV_MONGO_DATABASE}
     depends_on:
       - mongodb-dev
 
