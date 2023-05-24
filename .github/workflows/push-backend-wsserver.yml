@@ -2,9 +2,15 @@ name: Publish wsserver image
 
 on:
   push:
-    branches: [main]
+    branches:
+      - master
     paths:
       - 'api/wsserver/**'
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
 
 jobs:
   build-and-push:
