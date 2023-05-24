@@ -1,0 +1,51 @@
+version: '3'
+services:
+
+  main-dev:
+    profiles:
+      - dev
+    env_file: .env
+    container_name: main-dev
+    build:
+      context: ../
+      dockerfile: main/Dockerfile
+    ports:
+      - "81:8080"
+    environment:
+      MONGO_URI: ${DEV_MONGO_URI}
+      MONGO_DATABASE: ${DEV_MONGO_DATABASE}
+    depends_on:
+      - mongodb-dev
+
+  wsserver-dev:
+    profiles:
+      - dev
+    env_file: .env
+    container_name: wsserver-dev
+    build:
+      context: ../
+      dockerfile: wsserver/Dockerfile
+    ports:
+      - "82:8080"
+    environment:
+      MONGO_URI: ${DEV_MONGO_URI}
+      MONGO_DATABASE: ${DEV_MONGO_DATABASE}
+    depends_on:
+      - mongodb-dev
+
+  mongodb-dev:
+    profiles:
+      - dev
+    env_file: .env
+    container_name: mongodb-dev
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DEV_MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DEV_MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DEV_MONGO_DATABASE}
+    volumes:
+      - type: bind
+        source: ./mongodata
+        target: /data/db
