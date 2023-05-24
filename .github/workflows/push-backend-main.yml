@@ -2,7 +2,8 @@ name: Publish main image
 
 on:
   push:
-    branches: [main]
+    branches:
+      - master
     paths:
       - 'api/main/**'
 
@@ -19,6 +20,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker image
         working-directory: ./api/
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/chess-main:prod . -f .\main\Dockerfile
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/chess-main:prod . -f ./main/Dockerfile
       - name: Push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/chess-main:prod
