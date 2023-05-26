@@ -18,9 +18,9 @@ export class Figure {
 
   id: number
 
-  constructor(color: Colors) {
+  constructor(color: Colors, name: FigureNames) {
     this.color = color
-    this.name = FigureNames.FIGURE
+    this.name = name
 
     this.id = Math.random()
   }
