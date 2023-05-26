@@ -2,7 +2,6 @@ import { Colors } from "../Colors"
 import icon from "../../figures/blackPawn.svg"
 
 export enum FigureNames {
-  FIGURE = "figure",
   PAWN = "pawn",
   ROOK = "rook",
   KNIGHT = "knight",
@@ -11,10 +10,10 @@ export enum FigureNames {
   KING = "king",
 }
 
-export class Figure {
+export abstract class Figure {
   color: Colors
   name: FigureNames
-  icon: typeof icon | null
+  icon: typeof icon
 
   id: number
 
