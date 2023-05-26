@@ -3,16 +3,14 @@ package duzhinsky.chess.core.game.figure;
 import duzhinsky.chess.core.game.Board;
 import duzhinsky.chess.core.game.Color;
 import duzhinsky.chess.core.game.Position;
-import duzhinsky.chess.core.game.move.CompositeMove;
-import duzhinsky.chess.core.game.move.MovePart;
+import duzhinsky.chess.core.game.move.Move;
 import java.util.List;
-import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public abstract class Figure {
+public class Figure {
 
     private Position position;
 
@@ -36,26 +34,11 @@ public abstract class Figure {
         return lastMoveIteration == NOT_MOVED;
     }
 
-    public void makeMove(MovePart movePart, Board board) {
-        movePart.getFigure().setPosition(movePart.getTo());
-        movePart.getFigure().setLastMoveIteration(movePart.getIteration());
-        board.getFigures().remove(movePart.getFigure().getPosition());
-        board.getFigures().remove(movePart.getTo());
-        board.getFigures().put(movePart.getTo(), movePart.getFigure());
+    public List<Move> getPossibleMoves(Board board) {
+        return type.getProcessor().getPossibleMoves(this, board);
     }
 
-    public abstract List<CompositeMove> getPossibleMoves(Board board);
-
-    protected Stream<Position> offsetsToNewPositions(List<Position> offsets, Board board) {
-        return offsets.stream()
-            .map(offset -> color.directedOffset(offset))
-            .map(offset -> position.plus(offset))
-            .filter(Position::isOnBoard)
-            .filter(
-                // Is not occupied by the same color figure
-                newPos -> board.getFigure(newPos)
-                    .filter(onBoardFigure -> color == onBoardFigure.getColor())
-                    .isEmpty()
-            );
+    public static Figure pawn(Position position, Color color) {
+        return new Figure(position, color, FigureType.PAWN);
     }
 }
