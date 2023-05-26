@@ -1,8 +1,7 @@
 package duzhinsky.chess.core.game;
 
 import duzhinsky.chess.core.game.figure.Figure;
-import duzhinsky.chess.core.game.figure.Pawn;
-import duzhinsky.chess.core.game.move.CompositeMove;
+import duzhinsky.chess.core.game.move.Move;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -36,20 +35,27 @@ public class Board {
         return Optional.ofNullable(figures.get(pos));
     }
 
-    public List<CompositeMove> getPossibleMoves() {
-        return figures.values().stream().flatMap(figure -> figure.getPossibleMoves(this).stream()).toList();
+    public List<Move> getPossibleMoves() {
+        return figures.values().stream()
+            .flatMap(figure -> figure.getPossibleMoves(this).stream())
+            .toList();
+    }
+
+    public void moveFigure(Figure figure, Position to) {
+        figures.put(to, figure);
+        figure.setPosition(to);
     }
 
     public static final Board DEFAULT_BOARD = new Board(
         List.of(
-            new Pawn(new Position(0, 1), Color.WHITE),
-            new Pawn(new Position(1, 1), Color.WHITE),
-            new Pawn(new Position(2, 1), Color.WHITE),
-            new Pawn(new Position(3, 1), Color.WHITE),
-            new Pawn(new Position(4, 1), Color.WHITE),
-            new Pawn(new Position(5, 1), Color.WHITE),
-            new Pawn(new Position(6, 1), Color.WHITE),
-            new Pawn(new Position(7, 1), Color.WHITE)
+            Figure.pawn(new Position(0, 1), Color.WHITE),
+            Figure.pawn(new Position(1, 1), Color.WHITE),
+            Figure.pawn(new Position(2, 1), Color.WHITE),
+            Figure.pawn(new Position(3, 1), Color.WHITE),
+            Figure.pawn(new Position(4, 1), Color.WHITE),
+            Figure.pawn(new Position(5, 1), Color.WHITE),
+            Figure.pawn(new Position(6, 1), Color.WHITE),
+            Figure.pawn(new Position(7, 1), Color.WHITE)
         )
     );
 

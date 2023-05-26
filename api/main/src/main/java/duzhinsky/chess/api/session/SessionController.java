@@ -1,6 +1,5 @@
 package duzhinsky.chess.api.session;
 
-import duzhinsky.chess.api.coreDto.CompositeMoveDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,28 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class SessionController {
 
     private final SessionManager sessionManager;
-
-    @Operation(
-        summary = "Сделать ход",
-        description = "Применяет один из возможных ходов на доске"
-    )
-    @ApiResponse(
-        responseCode = "200",
-        content = @Content(
-            mediaType = MediaType.APPLICATION_JSON_VALUE,
-            schema = @Schema(implementation = SessionDto.class)
-        )
-    )
-    @ApiResponse(responseCode = "400", description = "Нельзя сделать такой ход. См тело ответа", content = @Content())
-    @ApiResponse(responseCode = "404", description = "Нет такой сессии", content = @Content())
-    @PostMapping("/{id}/move")
-    public SessionDto makeMove(
-        @PathVariable("id") String sessionId,
-        @RequestBody CompositeMoveDto moveDto,
-        @RequestHeader("pid") String playerId
-    ) {
-        return SessionDto.fromEntity(sessionManager.makeMove(sessionId, playerId, moveDto));
-    }
 
     @Operation(
         summary = "Создать новую игру с последующим поиском соперника",

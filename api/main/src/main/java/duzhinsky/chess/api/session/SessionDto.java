@@ -1,7 +1,7 @@
 package duzhinsky.chess.api.session;
 
 import duzhinsky.chess.api.coreDto.BoardDto;
-import duzhinsky.chess.api.coreDto.CompositeMoveDto;
+import duzhinsky.chess.core.game.move.Move;
 import duzhinsky.chess.core.session.Session;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
@@ -13,16 +13,14 @@ public record SessionDto (
 
     BoardDto board,
 
-    List<CompositeMoveDto> possibleMoves
+    List<Move> possibleMoves
 ) {
 
     public static SessionDto fromEntity(Session sessionEntity) {
         return new SessionDto(
             sessionEntity.getId(),
             BoardDto.fromBoard(sessionEntity.getBoard()),
-            sessionEntity.getBoard().getPossibleMoves().stream()
-                .map(CompositeMoveDto::fromCompositeMove)
-                .toList()
+            sessionEntity.getBoard().getPossibleMoves()
         );
     }
 }
