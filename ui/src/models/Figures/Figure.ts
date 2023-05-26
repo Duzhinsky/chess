@@ -1,9 +1,7 @@
 import { Colors } from "../Colors"
 import icon from "../../figures/blackPawn.svg"
-import { Cell } from "../Cell"
 
 export enum FigureNames {
-  FIGURE = "figure",
   PAWN = "pawn",
   ROOK = "rook",
   KNIGHT = "knight",
@@ -12,19 +10,16 @@ export enum FigureNames {
   KING = "king",
 }
 
-export class Figure {
+export abstract class Figure {
   color: Colors
-  cell: Cell
   name: FigureNames
-  icon: typeof icon | null
+  icon: typeof icon
 
   id: number
 
-  constructor(color: Colors, cell: Cell) {
+  constructor(color: Colors, name: FigureNames) {
     this.color = color
-    this.name = FigureNames.FIGURE
-    this.cell = cell
-    this.cell.figure = this
+    this.name = name
 
     this.id = Math.random()
   }
