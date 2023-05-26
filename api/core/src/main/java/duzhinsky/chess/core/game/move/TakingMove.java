@@ -15,12 +15,12 @@ public class TakingMove extends Move {
     protected final Figure taken;
 
     public TakingMove(Figure figure, Figure taken) {
-        super(MoveType.TAKING, figure);
+        super(MoveType.TAKING, figure, taken.getPosition());
         this.taken = taken;
     }
 
     protected TakingMove(MoveType type, Figure figure, Figure taken) {
-        super(type, figure);
+        super(type, figure, taken.getPosition());
         this.taken = taken;
     }
 

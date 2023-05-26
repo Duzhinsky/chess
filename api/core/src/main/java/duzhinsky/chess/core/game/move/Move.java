@@ -1,6 +1,7 @@
 package duzhinsky.chess.core.game.move;
 
 import duzhinsky.chess.core.game.Board;
+import duzhinsky.chess.core.game.Position;
 import duzhinsky.chess.core.game.figure.Figure;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,9 +16,12 @@ public abstract class Move {
 
     protected final Figure figure;
 
-    public Move(MoveType type, Figure figure) {
+    protected final Position to;
+
+    public Move(MoveType type, Figure figure, Position to) {
         this.type = type;
         this.figure = figure;
+        this.to = to;
     }
 
     public abstract boolean isLegal(Board board);

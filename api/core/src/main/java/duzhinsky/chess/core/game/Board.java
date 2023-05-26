@@ -18,11 +18,15 @@ public class Board {
 
     private int iteration;
 
+    private Color actingColor;
+
     private Map<Position, Figure> figures;
+
 
     public Board(int iteration, List<Figure> figures) {
         this(
             iteration,
+            Color.WHITE,
             figures.stream().collect(Collectors.toMap(Figure::getPosition, Function.identity()))
         );
     }
@@ -37,7 +41,16 @@ public class Board {
 
     public List<Move> getPossibleMoves() {
         return figures.values().stream()
+            .filter(figure -> figure.getColor() == actingColor)
             .flatMap(figure -> figure.getPossibleMoves(this).stream())
+            .toList();
+    }
+
+    public List<Position> getUnderAttackPositions() {
+        return figures.values().stream()
+            .filter(figure -> figure.getColor() != actingColor)
+            .flatMap(figure -> figure.getPossibleMoves(this).stream())
+            .map(Move::getTo)
             .toList();
     }
 

@@ -5,8 +5,5 @@ public enum MoveType {
     TAKING,
     EN_PASSANT,
     TURNING,
-    CASTLING_SHORT,
-    CASTLING_LONG,
-    CHECK,
-    MATE
+    CASTLING
 }
