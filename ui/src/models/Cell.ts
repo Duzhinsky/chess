@@ -1,4 +1,3 @@
-import { Board } from "./Board"
 import { Colors } from "./Colors"
 import { Figure } from "./Figures/Figure"
 
@@ -7,25 +6,25 @@ export class Cell {
   readonly y: number
   readonly color: Colors
 
-  board: Board
   figure: Figure | null
   available: boolean
 
   id: number
 
-  constructor(
-    x: number,
-    y: number,
-    color: Colors,
-    board: Board,
-    figure: Figure | null
-  ) {
+  constructor(x: number, y: number, color: Colors, figure: Figure | null) {
     this.x = x
     this.y = y
     this.color = color
-    this.board = board
     this.figure = figure
     this.available = false
     this.id = Math.random()
+  }
+
+  public moveFigure(target: Cell) {
+    if (this.figure?.canMove(target)) {
+      this.figure.moveFigure(target)
+      target.figure = this.figure
+      this.figure = null
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { Colors } from "../Colors"
 import icon from "../../figures/blackPawn.svg"
+import { Cell } from "../Cell"
 
 export enum FigureNames {
   PAWN = "pawn",
@@ -22,5 +23,11 @@ export abstract class Figure {
     this.name = name
 
     this.id = Math.random()
+  }
+
+  public moveFigure(target: Cell) {}
+
+  public canMove(target: Cell) {
+    return true
   }
 }

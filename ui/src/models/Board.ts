@@ -16,9 +16,9 @@ export class Board {
       const row: Cell[] = []
       for (let j = 0; j < 8; j++) {
         if ((i + j) % 2) {
-          row.push(new Cell(j, i, Colors.BLACK, this, null))
+          row.push(new Cell(j, i, Colors.BLACK, null))
         } else {
-          row.push(new Cell(j, i, Colors.WHITE, this, null))
+          row.push(new Cell(j, i, Colors.WHITE, null))
         }
       }
       this.cells.push(row)
@@ -83,6 +83,21 @@ export class Board {
     this.addBishops()
     this.addQueens()
     this.addKings()
+  }
+
+  public highlightCells(selectedCell: Cell | null) {
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        const target = this.cells[i][j]
+        target.available = !!selectedCell?.figure?.canMove(target)
+      }
+    }
+  }
+
+  public getCopy(): Board {
+    const newBoard = new Board()
+    newBoard.cells = this.cells
+    return newBoard
   }
 
   constructor() {
