@@ -12,7 +12,7 @@ body {
     no-repeat;
 }
 
-.app {
+.game {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,4 +41,60 @@ body {
 
 .black {
   background-color: #b58863;
+}
+
+.center {
+  text-align: center;
+}
+
+.nav {
+  position: static;
+  top: 0;
+  right: 0;
+  z-index: 100;
+
+  display: flex;
+  justify-content: end;
+  height: 42px;
+  width: 100%;
+  padding: 10px 0;
+
+  background-color: gray;
+}
+
+.nav__item {
+  position: relative;
+
+  margin-right: 15px;
+
+  font-weight: 700;
+  color: whitesmoke;
+  text-decoration: none;
+
+  transition: font 0.2s ease-in-out;
+}
+
+.nav__item:hover {
+  color: white;
+}
+
+.nav__item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+
+  display: block;
+  height: 2px;
+  width: 0;
+
+  background-color: white;
+
+  transition: width 0.2s ease-in-out;
+}
+
+.nav__item:hover.nav__item::after {
+  width: 100%;
 }

@@ -1,22 +1,18 @@
-import { useEffect, useState } from "react"
+import { Route, Routes } from "react-router-dom"
 import "./App.css"
-import BoardComponent from "./components/BoardComponent"
-import { Board } from "./models/Board"
+import Game from "./pages/Game"
+import Home from "./pages/Home"
+import Nav from "./components/Nav"
 
 function App() {
-  const [board, setBoard] = useState<Board>(new Board())
-
-  function restart() {
-    const newBoard = new Board()
-    setBoard(newBoard)
-  }
-
-  useEffect(() => restart(), [])
-
   return (
-    <div className="app">
-      <BoardComponent board={board} setBoard={setBoard} />
-    </div>
+    <>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/game" element={<Game />} />
+      </Routes>
+    </>
   )
 }
 
