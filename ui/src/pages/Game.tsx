@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import BoardComponent from "../components/BoardComponent"
-import { Board } from "../models/Board"
+import { useActions } from "../hooks/reduxHooks"
 
 const Game = () => {
-  const [board, setBoard] = useState<Board>(new Board())
+  const { createBoard } = useActions()
 
   function restart() {
-    const newBoard = new Board()
-    setBoard(newBoard)
+    createBoard()
   }
 
-  useEffect(() => restart(), [])
+  useEffect(() => restart(), []) //eslint-disable-line
 
   return (
     <div className="game">
-      <BoardComponent board={board} setBoard={setBoard} />
+      <BoardComponent />
     </div>
   )
 }
