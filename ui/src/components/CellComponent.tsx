@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Cell } from "../models/Cell"
 import { useActions, useAppSelector } from "../hooks/reduxHooks"
-import { selectedCellSelector } from "../store/selectors"
+import { boardSelector, selectedCellSelector } from "../store/selectors"
 
 interface CellComponentProps {
   cell: Cell
@@ -9,15 +9,20 @@ interface CellComponentProps {
 
 const CellComponent: FC<CellComponentProps> = ({ cell }) => {
   const selectedCell = useAppSelector(selectedCellSelector)
+  const board = useAppSelector(boardSelector)
   const { setSelectedCell } = useActions()
 
   const selectCell = (cell: Cell): void => {
+    if (cell === selectedCell) {
+      setSelectedCell(null)
+      return
+    }
     if (
       selectedCell &&
       cell !== selectedCell &&
-      selectedCell.figure?.canMove(cell)
+      selectedCell.figure?.canMove(cell, board)
     ) {
-      selectedCell.moveFigure(cell)
+      board.moveFigure(selectedCell, cell)
       setSelectedCell(null)
     } else {
       setSelectedCell(cell)

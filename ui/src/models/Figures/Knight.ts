@@ -4,8 +4,8 @@ import blackLogo from "../../figures/blackKnight.svg"
 import whiteLogo from "../../figures/whiteKnight.svg"
 
 export class Knight extends Figure {
-  constructor(color: Colors) {
-    super(color, FigureNames.KNIGHT)
+  constructor(x: number, y: number, color: Colors) {
+    super(x, y, color, FigureNames.KNIGHT)
     this.icon = color === Colors.BLACK ? blackLogo : whiteLogo
   }
 }
