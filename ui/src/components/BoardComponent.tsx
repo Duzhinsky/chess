@@ -1,19 +1,15 @@
 import { FC, Fragment } from "react"
-import { Board } from "../models/Board"
 import CellComponent from "./CellComponent"
+import { useAppSelector } from "../hooks/reduxHooks"
 
-interface BoardComponentProps {
-  board: Board
-  setBoard: (board: Board) => void
-}
-
-const BoardComponent: FC<BoardComponentProps> = ({ board, setBoard }) => {
+const BoardComponent: FC = () => {
+  const { cells } = useAppSelector((state) => state.cells)
   return (
     <div className="board">
-      {board.cells.map((row, index) => (
+      {cells.map((row, index) => (
         <Fragment key={index}>
           {row.map((cell) => (
-            <CellComponent key={cell.id} cell={cell} />
+            <CellComponent key={Math.random()} {...cell} />
           ))}
         </Fragment>
       ))}

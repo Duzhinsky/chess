@@ -28,6 +28,8 @@ body {
 }
 
 .cell {
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +56,7 @@ body {
   z-index: 100;
 
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   height: 42px;
   width: 100%;
   padding: 10px 0;
@@ -64,7 +66,6 @@ body {
 
 .nav__item {
   position: relative;
-
   margin-right: 15px;
 
   font-weight: 700;
@@ -97,4 +98,21 @@ body {
 
 .nav__item:hover.nav__item::after {
   width: 100%;
+}
+
+.select {
+  background-color: rgba(52, 155, 67, 0.5);
+}
+
+.available {
+  display: block;
+  width: 12px;
+  height: 12px;
+
+  background-color: rgb(43, 114, 54);
+  border-radius: 50%;
+}
+
+.available__beat {
+  background-color: rgb(43, 114, 54);
 }
