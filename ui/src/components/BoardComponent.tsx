@@ -1,20 +1,15 @@
 import { FC, Fragment } from "react"
 import CellComponent from "./CellComponent"
 import { useAppSelector } from "../hooks/reduxHooks"
-import { boardSelector } from "../store/selectors"
 
 const BoardComponent: FC = () => {
-  const board = useAppSelector(boardSelector)
-  // const selectedCell = useAppSelector(selectedCellSelector)
-
-  // board.highlightCells(selectedCell) // cuz component "didUpdate" on each user click onto Cell
-
+  const { cells } = useAppSelector((state) => state.cells)
   return (
     <div className="board">
-      {board.cells.map((row, index) => (
+      {cells.map((row, index) => (
         <Fragment key={index}>
           {row.map((cell) => (
-            <CellComponent key={cell.id} cell={cell} />
+            <CellComponent key={Math.random()} {...cell} />
           ))}
         </Fragment>
       ))}

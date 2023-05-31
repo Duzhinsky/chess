@@ -1,13 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit"
-import BoardSlice from "./reducers/BoardSlice"
 import SelectedCellSlice from "./reducers/SelectedCellSlice"
-import FelledFigures from "./reducers/FelledFigures"
+import cellsSlice from "./reducers/CellsSlice"
 
 export const store = configureStore({
   reducer: {
-    board: BoardSlice,
     selectedCell: SelectedCellSlice,
-    felledFigures: FelledFigures,
+    cells: cellsSlice,
   },
   middleware: (gdm) =>
     gdm({
