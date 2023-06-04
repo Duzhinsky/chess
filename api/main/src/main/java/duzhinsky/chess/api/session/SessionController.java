@@ -1,6 +1,7 @@
 package duzhinsky.chess.api.session;
 
 import duzhinsky.chess.core.game.move.MoveDto;
+import duzhinsky.chess.core.session.SessionDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
