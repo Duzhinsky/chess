@@ -13,7 +13,7 @@ tasks {
         outputKind = TypeScriptOutputKind.module
         outputFileType = TypeScriptFileType.implementationFile
         classPatterns = listOf("duzhinsky.chess.**Dto")
-        outputFile = "../ui/src/generated/api.ts"
+        outputFile = "../../ui/src/generated/api.ts"
     }
 }
 
