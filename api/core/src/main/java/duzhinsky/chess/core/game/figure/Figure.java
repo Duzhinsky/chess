@@ -1,12 +1,13 @@
 package duzhinsky.chess.core.game.figure;
 
-import duzhinsky.chess.core.game.Board;
 import duzhinsky.chess.core.game.Color;
 import duzhinsky.chess.core.game.Position;
+import duzhinsky.chess.core.game.board.Board;
 import duzhinsky.chess.core.game.move.Move;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.data.annotation.PersistenceCreator;
 
 @Data
 @AllArgsConstructor
@@ -26,6 +27,7 @@ public class Figure {
         this.type = type;
     }
 
+    @PersistenceCreator
     public Figure(Position position, Color color, FigureType type) {
         this(position, color, type, NOT_MOVED);
     }

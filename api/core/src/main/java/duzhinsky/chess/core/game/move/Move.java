@@ -1,7 +1,7 @@
 package duzhinsky.chess.core.game.move;
 
-import duzhinsky.chess.core.game.Board;
 import duzhinsky.chess.core.game.Position;
+import duzhinsky.chess.core.game.board.Board;
 import duzhinsky.chess.core.game.figure.Figure;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

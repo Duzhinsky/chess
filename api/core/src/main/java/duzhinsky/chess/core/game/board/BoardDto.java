@@ -1,6 +1,6 @@
-package duzhinsky.chess.api.coreDto;
+package duzhinsky.chess.core.game.board;
 
-import duzhinsky.chess.core.game.Board;
+import duzhinsky.chess.core.game.figure.FigureDto;
 import java.util.List;
 
 public record BoardDto(
