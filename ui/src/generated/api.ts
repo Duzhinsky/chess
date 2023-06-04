@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 3.2.1263 on 2023-06-04 15:45:20.
+// Generated using typescript-generator version 3.2.1263 on 2023-06-04 16:04:28.
 
 export interface PositionDto {
     x: number;
@@ -27,7 +27,7 @@ export interface MoveDto {
 }
 
 export interface SessionDto {
-    ids: string;
+    id: string;
     board: BoardDto;
     possibleMoves: MoveDto[];
 }
