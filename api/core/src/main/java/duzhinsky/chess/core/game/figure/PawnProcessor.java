@@ -1,7 +1,7 @@
 package duzhinsky.chess.core.game.figure;
 
-import duzhinsky.chess.core.game.Board;
 import duzhinsky.chess.core.game.Position;
+import duzhinsky.chess.core.game.board.Board;
 import duzhinsky.chess.core.game.move.EnPassantMove;
 import duzhinsky.chess.core.game.move.Move;
 import duzhinsky.chess.core.game.move.StepMove;

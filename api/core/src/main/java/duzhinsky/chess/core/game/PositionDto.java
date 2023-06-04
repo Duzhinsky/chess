@@ -1,6 +1,4 @@
-package duzhinsky.chess.api.coreDto;
-
-import duzhinsky.chess.core.game.Position;
+package duzhinsky.chess.core.game;
 
 public record PositionDto(
     int x,

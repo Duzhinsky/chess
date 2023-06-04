@@ -1,7 +1,7 @@
 package duzhinsky.chess.api.session;
 
-import duzhinsky.chess.api.coreDto.BoardDto;
-import duzhinsky.chess.core.game.move.Move;
+import duzhinsky.chess.core.game.board.BoardDto;
+import duzhinsky.chess.core.game.move.MoveDto;
 import duzhinsky.chess.core.session.Session;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
@@ -13,7 +13,7 @@ public record SessionDto (
 
     BoardDto board,
 
-    List<Move> possibleMoves
+    List<MoveDto> possibleMoves
 ) {
 
     public static SessionDto fromEntity(Session sessionEntity) {
@@ -21,6 +21,7 @@ public record SessionDto (
             sessionEntity.getId(),
             BoardDto.fromBoard(sessionEntity.getBoard()),
             sessionEntity.getBoard().getPossibleMoves()
+                .stream().map(MoveDto::fromMove).toList()
         );
     }
 }

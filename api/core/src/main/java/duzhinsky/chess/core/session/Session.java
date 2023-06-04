@@ -1,7 +1,7 @@
 package duzhinsky.chess.core.session;
 
-import duzhinsky.chess.core.game.Board;
 import duzhinsky.chess.core.game.Color;
+import duzhinsky.chess.core.game.board.Board;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

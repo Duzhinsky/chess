@@ -1,5 +1,7 @@
-package duzhinsky.chess.core.game;
+package duzhinsky.chess.core.game.board;
 
+import duzhinsky.chess.core.game.Color;
+import duzhinsky.chess.core.game.Position;
 import duzhinsky.chess.core.game.figure.Figure;
 import duzhinsky.chess.core.game.move.Move;
 import java.util.List;
@@ -55,6 +57,7 @@ public class Board {
     }
 
     public void moveFigure(Figure figure, Position to) {
+        figures.remove(figure.getPosition());
         figures.put(to, figure);
         figure.setPosition(to);
     }

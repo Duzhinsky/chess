@@ -1,7 +1,8 @@
 package duzhinsky.chess.api.session;
 
-import duzhinsky.chess.core.game.Board;
 import duzhinsky.chess.core.game.Color;
+import duzhinsky.chess.core.game.board.Board;
+import duzhinsky.chess.core.game.move.Move;
 import duzhinsky.chess.core.session.Session;
 import duzhinsky.chess.core.session.SessionRepository;
 import duzhinsky.chess.core.session.SessionStatus;
@@ -34,5 +35,11 @@ public class SessionManager {
         return sessionRepository.findById(id).orElseThrow(
             () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
+    }
+
+    public Session makeMove(Session session, Move move) {
+        move.apply(session.getBoard());
+        sessionRepository.save(session);
+        return session;
     }
 }
