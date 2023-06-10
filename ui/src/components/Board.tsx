@@ -1,5 +1,5 @@
 import { FC, Fragment } from "react"
-import CellComponent from "./CellComponent"
+import CellComponent from "./Cell"
 import { useAppSelector } from "../hooks/reduxHooks"
 
 const BoardComponent: FC = () => {

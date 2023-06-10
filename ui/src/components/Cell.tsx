@@ -1,5 +1,4 @@
 import { FC } from "react"
-import { Colors } from "../models/Colors"
 import { Position } from "../models/Position"
 import { Figure } from "../models/Figure"
 import { useActions, useAppSelector } from "../hooks/reduxHooks"
@@ -8,7 +7,7 @@ export interface CellProps {
   position: Position
   figure: Figure | null
 
-  color: Colors
+  // color: Colors
   available: boolean
   isSelected: boolean
   setIsSelected: () => void
@@ -17,7 +16,7 @@ export interface CellProps {
 const CellComponent: FC<CellProps> = ({
   position,
   figure,
-  color,
+  // color,
   available,
 }) => {
   const { setSelectedCell } = useActions()
@@ -27,7 +26,7 @@ const CellComponent: FC<CellProps> = ({
       onClick={() => setSelectedCell(position)}
       className={[
         "cell",
-        color,
+        // color,
         selectedCell?.x === position.x &&
           selectedCell?.y === position.y &&
           "select",

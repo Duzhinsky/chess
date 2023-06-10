@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { CellProps } from "../../components/CellComponent"
+import { CellProps } from "../../components/Cell"
 import { Colors } from "../../models/Colors"
-import { FiguresOnBoard } from "../../models/Session"
 import { Figure } from "../../models/Figure"
 
 interface CellsState {
@@ -37,19 +36,7 @@ const initialState: CellsState = new (class implements CellsState {
 export const cellsSlice = createSlice({
   name: "cells",
   initialState,
-  reducers: {
-    setCells: (state, action: PayloadAction<FiguresOnBoard>) => {
-      // const newFigs = action.payload.figures.map(
-      //   (newFig) => new Figure(newFig.color as Colors, newFig.type)
-      // )
-      action.payload.figures.forEach((fig) => {
-        state.cells[fig.position.y][fig.position.x].figure = new Figure(
-          fig.color as Colors,
-          fig.type
-        )
-      })
-    },
-  },
+  reducers: {},
 })
 
 export default cellsSlice.reducer
