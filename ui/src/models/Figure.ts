@@ -21,12 +21,12 @@ type IconMap = {
 }
 
 export enum FigureType {
-  PAWN,
-  ROOK,
-  KNIGHT,
-  BISHOP,
-  QUEEN,
-  KING,
+  PAWN = "PAWN",
+  ROOK = "ROOK",
+  KNIGHT = "KNIGHT",
+  BISHOP = "BISHOP",
+  QUEEN = "QUEEN",
+  KING = "KING",
 }
 
 const figureIcons: IconMap = {

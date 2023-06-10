@@ -9,7 +9,7 @@ const initialState: SelectedCellState = {
   selectedCell: null,
 }
 
-export const SelectedCellSlice = createSlice({
+export const selectedCellSlice = createSlice({
   name: "SelectedCell",
   initialState,
   reducers: {
@@ -26,4 +26,4 @@ export const SelectedCellSlice = createSlice({
   },
 })
 
-export default SelectedCellSlice.reducer
+export default selectedCellSlice.reducer
