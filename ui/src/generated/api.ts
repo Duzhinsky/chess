@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 3.2.1263 on 2023-06-10 20:07:22.
+// Generated using typescript-generator version 3.2.1263 on 2023-06-10 20:50:57.
 
 export interface PositionDto {
     x: number;
@@ -32,7 +32,7 @@ export interface SessionDto {
     possibleMoves: MoveDto[];
 }
 
-export const enum FigureType {
+export enum FigureType {
     BISHOP = "BISHOP",
     KING = "KING",
     KNIGHT = "KNIGHT",
@@ -41,12 +41,12 @@ export const enum FigureType {
     ROCK = "ROCK",
 }
 
-export const enum Color {
+export enum Color {
     WHITE = "WHITE",
     BLACK = "BLACK",
 }
 
-export const enum MoveType {
+export enum MoveType {
     STEP = "STEP",
     TAKING = "TAKING",
     EN_PASSANT = "EN_PASSANT",

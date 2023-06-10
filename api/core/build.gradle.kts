@@ -16,6 +16,7 @@ tasks {
         classPatterns = listOf("duzhinsky.chess.**Dto")
         outputFile = "../../ui/src/generated/api.ts"
         mapEnum = EnumMapping.asEnum
+        nonConstEnums = true
     }
 }
 
