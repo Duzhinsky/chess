@@ -1,7 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 import { CellProps } from "../../components/Cell"
-import { Colors } from "../../models/Colors"
-import { Figure } from "../../models/Figure"
+import { Color } from "../../generated/api"
 
 interface CellsState {
   cells: CellProps[][]
@@ -22,10 +21,7 @@ const initialState: CellsState = new (class implements CellsState {
         row.push({
           position: { x: j, y: i },
           figure: null,
-          color: (i + j) % 2 ? Colors.BLACK : Colors.WHITE,
-          available: false,
-          isSelected: false,
-          setIsSelected: () => {},
+          color: (i + j) % 2 ? Color.BLACK : Color.WHITE,
         })
       }
       this.cells.push(row)

@@ -1,44 +1,21 @@
 import { FC } from "react"
-import { Position } from "../models/Position"
 import { Figure } from "../models/Figure"
-import { useActions, useAppSelector } from "../hooks/reduxHooks"
+import { Color, PositionDto } from "../generated/api"
 
 export interface CellProps {
-  position: Position
+  position: PositionDto
   figure: Figure | null
-
-  // color: Colors
-  available: boolean
-  isSelected: boolean
-  setIsSelected: () => void
+  color: Color
 }
 
-const CellComponent: FC<CellProps> = ({
-  position,
-  figure,
-  // color,
-  available,
-}) => {
-  const { setSelectedCell } = useActions()
-  const { selectedCell } = useAppSelector((state) => state.selectedCell)
+const Cell: FC<CellProps> = ({ figure, color }) => {
   return (
-    <div
-      onClick={() => setSelectedCell(position)}
-      className={[
-        "cell",
-        // color,
-        selectedCell?.x === position.x &&
-          selectedCell?.y === position.y &&
-          "select",
-        // available && cell.figure && "available__beat",
-      ].join(" ")}
-    >
+    <div className={["cell", color].join(" ")}>
       {figure?.icon && (
         <img src={figure.icon} alt="cell.figure.icon" style={{ width: 64 }} />
       )}
-      {available && <div className="available" />}
     </div>
   )
 }
 
-export default CellComponent
+export default Cell

@@ -7,9 +7,8 @@ export const chessApi = createApi({
     baseUrl: "http://w1vvv1w.fvds.ru:81/",
   }),
   endpoints: (build) => ({
-    getSession: build.query<SessionDto, string>({
-      query: (id: string) => `session/db5f6aea-22da-4cd3-93b4-885c987a22d0`,
-      // `session/${id}`,
+    getSession: build.query<SessionDto, any>({
+      query: () => ({ url: `session/db5f6aea-22da-4cd3-93b4-885c987a22d0` }),
     }),
   }),
 })

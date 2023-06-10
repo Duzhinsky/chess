@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { Position } from "../../models/Position"
+import { PositionDto } from "../../generated/api"
 
 interface SelectedCellState {
-  selectedCell: Position | null
+  selectedCell: PositionDto | null
 }
 
 const initialState: SelectedCellState = {
@@ -13,7 +13,7 @@ export const selectedCellSlice = createSlice({
   name: "SelectedCell",
   initialState,
   reducers: {
-    setSelectedCell: (state, action: PayloadAction<Position | null>) => {
+    setSelectedCell: (state, action: PayloadAction<PositionDto | null>) => {
       if (
         state.selectedCell?.x === action.payload?.x &&
         state.selectedCell?.y === action.payload?.y
