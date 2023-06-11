@@ -47,12 +47,12 @@ const figureIcons: IconMap = {
   },
 }
 
-export class Figure {
+export interface Figure {
   icon: any
   color: Color
-
-  constructor(color: Color, type: FigureType) {
-    this.color = color
-    this.icon = figureIcons[type][color]
-  }
 }
+
+export const makeFigure = (color: Color, type: FigureType): Figure => ({
+  icon: figureIcons[type][color],
+  color,
+})

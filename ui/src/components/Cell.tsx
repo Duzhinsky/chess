@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { Figure } from "../models/Figure"
-import { Color, PositionDto } from "../generated/api"
+import { Color, FigureType, PositionDto } from "../generated/api"
 import { useActions, useAppSelector } from "../hooks/reduxHooks"
 import { selectedCellSelector } from "../store/selectors"
 
@@ -24,7 +24,12 @@ const Cell: FC<CellProps> = ({ figure, color, position }) => {
       onClick={() => setSelectedCell(position)}
     >
       {figure?.icon && (
-        <img src={figure.icon} alt="cell.figure.icon" style={{ width: 64 }} />
+        <img
+          draggable={false}
+          src={figure.icon}
+          alt="cell.figure.icon"
+          style={{ width: 64 }}
+        />
       )}
     </div>
   )
