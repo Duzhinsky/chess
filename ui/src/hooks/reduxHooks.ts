@@ -1,13 +1,15 @@
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../store"
 import { bindActionCreators } from "@reduxjs/toolkit"
-import { SelectedCellSlice } from "../store/reducers/SelectedCellSlice"
+import { selectedCellSlice } from "../store/reducers/SelectedCellSlice"
+import { cellsSlice } from "../store/reducers/CellsSlice"
 
 export const useAppDispatch: () => AppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export const actions = {
-  ...SelectedCellSlice.actions,
+  ...selectedCellSlice.actions,
+  ...cellsSlice.actions,
 }
 
 export const useActions = () => {
