@@ -10,7 +10,7 @@ const initialState: SelectedCellState = {
 }
 
 export const selectedCellSlice = createSlice({
-  name: "SelectedCell",
+  name: "selectedCell",
   initialState,
   reducers: {
     setSelectedCell: (state, action: PayloadAction<PositionDto | null>) => {

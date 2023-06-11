@@ -4,6 +4,7 @@ import { useAppSelector } from "../hooks/reduxHooks"
 
 const Board: FC = () => {
   const { cells } = useAppSelector((state) => state.cells)
+
   return (
     <div className="board">
       {cells.map((row, index) => (
