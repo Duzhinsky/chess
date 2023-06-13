@@ -1,6 +1,4 @@
 version: '3'
-
-
 services:
 
   main:
@@ -9,8 +7,8 @@ services:
       - .env
     container_name: main
     build:
-      context: ../
-      dockerfile: main/Dockerfile
+      context: ../api
+      dockerfile: ../api/main/Dockerfile
     image: duzhinsky/chess:main-dev
     ports:
       - "81:8080"
@@ -23,8 +21,8 @@ services:
       - .env
     container_name: wsserver
     build:
-      context: ../
-      dockerfile: wsserver/Dockerfile
+      context: ../api
+      dockerfile: ../api/wsserver/Dockerfile
     image: duzhinsky/chess:wsserver-dev
     ports:
       - "82:8080"

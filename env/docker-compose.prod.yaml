@@ -1,6 +1,4 @@
 version: '3'
-
-
 services:
 
   main:
@@ -14,8 +12,7 @@ services:
       - mongodb
 
   wsserver:
-    # Uncomment this when wsserver is ready to run
-    #restart: always
+    restart: always
     env_file:
       - prod.env
       - .env
