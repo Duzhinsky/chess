@@ -1,9 +1,8 @@
-## How to launch in dev environment 
+## How to launch
 
-Use docker-compose in ./env to run.
+Use docker-compose to run
 
 ```shell
-cd env
 docker compose -f docker-compose.common.yaml -f docker-compose.dev.yaml up -d --build
 ```
 
