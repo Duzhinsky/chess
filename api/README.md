@@ -1,15 +1,18 @@
 ## How to launch in dev environment 
 
-Use docker-compose in ./env specifying dev profile to run locally.
+Use docker-compose in ./env to run.
 
 ```shell
 cd env
-docker-compose --profile dev up -d --build
+docker compose -f .\docker-compose.common.yaml -f .\docker-compose.dev.yaml up -d --build
 ```
 
 It'll build server application on each run, so, to use the last image use
 ```shell
-docker-compose --profile dev up -d --no-build
+docker compose -f .\docker-compose.common.yaml -f .\docker-compose.dev.yaml up -d --no-build 
 ```
 
-Don't forget to run build each time you switch between branches 
+At production server run with 
+```shell
+docker compose -f .\docker-compose.common.yaml -f .\docker-compose.prod.yaml -f .\docker-compose.watchtower.yaml up -d 
+```

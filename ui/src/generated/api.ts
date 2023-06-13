@@ -32,6 +32,7 @@ export interface SessionDto {
   possibleMoves: MoveDto[]
 }
 
+
 export enum FigureType {
   BISHOP = "BISHOP",
   KING = "KING",
