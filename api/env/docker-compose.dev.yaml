@@ -1,0 +1,32 @@
+version: '3'
+
+
+services:
+
+  main:
+    env_file:
+      - dev.env
+      - .env
+    container_name: main
+    build:
+      context: ../
+      dockerfile: main/Dockerfile
+    image: duzhinsky/chess:main-dev
+    ports:
+      - "81:8080"
+    depends_on:
+      - mongodb
+
+  wsserver:
+    env_file:
+      - dev.env
+      - .env
+    container_name: wsserver
+    build:
+      context: ../
+      dockerfile: wsserver/Dockerfile
+    image: duzhinsky/chess:wsserver-dev
+    ports:
+      - "82:8080"
+    depends_on:
+      - mongodb

@@ -1,3 +1,4 @@
+import cz.habarta.typescript.generator.EnumMapping
 import cz.habarta.typescript.generator.JsonLibrary
 import cz.habarta.typescript.generator.TypeScriptFileType
 import cz.habarta.typescript.generator.TypeScriptOutputKind
@@ -14,6 +15,9 @@ tasks {
         outputFileType = TypeScriptFileType.implementationFile
         classPatterns = listOf("duzhinsky.chess.**Dto")
         outputFile = "../../ui/src/generated/api.ts"
+        generateInfoJson = true
+        generateNpmPackageJson = true
+        mapEnum = EnumMapping.asEnum
     }
 }
 
