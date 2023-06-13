@@ -1,43 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { CellProps } from "../../components/CellComponent"
-import { Colors } from "../../models/Colors"
-import { Figure, FigureType } from "../../models/Figure"
+import { initCells } from "./../../utils/initCells"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
+import { CellProps } from "../../components/Cell"
+import { BoardDto } from "../../generated/api"
+import { makeFigure } from "../../models/Figure"
 
-interface CellsState {
+export interface CellsState {
   cells: CellProps[][]
 }
 
-const initialState: CellsState = new (class implements CellsState {
-  cells: CellProps[][]
-
-  constructor() {
-    this.cells = []
-    this.initCells()
-    this.cells[3][4].figure = new Figure(Colors.WHITE, FigureType.PAWN)
-  }
-
-  private initCells() {
-    for (let i = 0; i < 8; i++) {
-      const row: CellProps[] = []
-      for (let j = 0; j < 8; j++) {
-        row.push({
-          position: { x: j, y: i },
-          figure: null,
-          color: (i + j) % 2 ? Colors.BLACK : Colors.WHITE,
-          available: false,
-          isSelected: false,
-          setIsSelected: () => {},
-        })
-      }
-      this.cells.push(row)
-    }
-  }
-})()
+const initialState: CellsState = { cells: initCells() }
 
 export const cellsSlice = createSlice({
   name: "cells",
   initialState,
-  reducers: {},
+  reducers: {
+    updateFigures: (state, action: PayloadAction<BoardDto>) => {
+      action.payload.figures.map(
+        (figure) =>
+          (state.cells[figure.position.y][figure.position.x].figure =
+            makeFigure(figure.color, figure.type))
+      )
+    },
+  },
 })
-
+export const { updateFigures } = cellsSlice.actions
 export default cellsSlice.reducer

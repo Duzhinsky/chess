@@ -15,9 +15,8 @@ tasks {
         outputFileType = TypeScriptFileType.implementationFile
         classPatterns = listOf("duzhinsky.chess.**Dto")
         outputFile = "../../ui/src/generated/api.ts"
-        generateInfoJson = true
-        generateNpmPackageJson = true
         mapEnum = EnumMapping.asEnum
+        nonConstEnums = true
     }
 }
 

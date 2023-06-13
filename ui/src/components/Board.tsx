@@ -1,15 +1,16 @@
 import { FC, Fragment } from "react"
-import CellComponent from "./CellComponent"
+import Cell from "./Cell"
 import { useAppSelector } from "../hooks/reduxHooks"
 
-const BoardComponent: FC = () => {
+const Board: FC = () => {
   const { cells } = useAppSelector((state) => state.cells)
+
   return (
     <div className="board">
       {cells.map((row, index) => (
         <Fragment key={index}>
           {row.map((cell) => (
-            <CellComponent key={Math.random()} {...cell} />
+            <Cell key={Math.random()} {...cell} />
           ))}
         </Fragment>
       ))}
@@ -17,4 +18,4 @@ const BoardComponent: FC = () => {
   )
 }
 
-export default BoardComponent
+export default Board

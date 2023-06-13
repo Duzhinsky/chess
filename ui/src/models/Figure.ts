@@ -1,4 +1,3 @@
-import { Colors } from "./Colors"
 import whitePawn from "../figures/whitePawn.svg"
 import blackPawn from "../figures/blackPawn.svg"
 import whiteRook from "../figures/whiteRook.svg"
@@ -11,57 +10,49 @@ import whiteQueen from "../figures/whiteQueen.svg"
 import blackQueen from "../figures/blackQueen.svg"
 import whiteKing from "../figures/whiteKing.svg"
 import blackKing from "../figures/blackKing.svg"
+import { Color, FigureType } from "../generated/api"
 
 type ColorMap = {
-  [key in Colors]: string
+  [key in Color]: string
 }
 
 type IconMap = {
   [key in FigureType]: ColorMap
 }
 
-export enum FigureType {
-  PAWN,
-  ROOK,
-  KNIGHT,
-  BISHOP,
-  QUEEN,
-  KING,
-}
-
 const figureIcons: IconMap = {
   [FigureType.PAWN]: {
-    [Colors.WHITE]: whitePawn,
-    [Colors.BLACK]: blackPawn,
+    [Color.WHITE]: whitePawn,
+    [Color.BLACK]: blackPawn,
   },
-  [FigureType.ROOK]: {
-    [Colors.WHITE]: whiteRook,
-    [Colors.BLACK]: blackRook,
+  [FigureType.ROCK]: {
+    [Color.WHITE]: whiteRook,
+    [Color.BLACK]: blackRook,
   },
   [FigureType.KNIGHT]: {
-    [Colors.WHITE]: whiteKnight,
-    [Colors.BLACK]: blackKnight,
+    [Color.WHITE]: whiteKnight,
+    [Color.BLACK]: blackKnight,
   },
   [FigureType.BISHOP]: {
-    [Colors.WHITE]: whiteBishop,
-    [Colors.BLACK]: blackBishop,
+    [Color.WHITE]: whiteBishop,
+    [Color.BLACK]: blackBishop,
   },
   [FigureType.QUEEN]: {
-    [Colors.WHITE]: whiteQueen,
-    [Colors.BLACK]: blackQueen,
+    [Color.WHITE]: whiteQueen,
+    [Color.BLACK]: blackQueen,
   },
   [FigureType.KING]: {
-    [Colors.WHITE]: whiteKing,
-    [Colors.BLACK]: blackKing,
+    [Color.WHITE]: whiteKing,
+    [Color.BLACK]: blackKing,
   },
 }
 
-export class Figure {
+export interface Figure {
   icon: any
-  color: Colors
-
-  constructor(color: Colors, type: FigureType) {
-    this.color = color
-    this.icon = figureIcons[type][color]
-  }
+  color: Color
 }
+
+export const makeFigure = (color: Color, type: FigureType): Figure => ({
+  icon: figureIcons[type][color],
+  color,
+})
