@@ -15,3 +15,8 @@ At production server run with
 ```shell
 docker compose -f docker-compose.common.yaml -f docker-compose.prod.yaml -f docker-compose.watchtower.yaml up -d 
 ```
+
+To restart nginx:
+```shell
+docker compose -f docker-compose.common.yaml -f docker-compose.prod.yaml -f docker-compose.watchtower.yaml restart nginx
+```
