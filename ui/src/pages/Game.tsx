@@ -1,12 +1,13 @@
 import { useEffect } from "react"
-import { useCreateSessionMutation, useGetSessionQuery } from "../API/chessApi"
+import { useCreateSessionMutation } from "../API/chessApi"
 import Board from "../components/Board"
 
 const Game = () => {
+  const [createSession] = useCreateSessionMutation()
+
   useEffect(() => {
     createSession()
-  }, [])
-  const [createSession] = useCreateSessionMutation()
+  }, []) //eslint-disable-line
 
   return (
     <div className="game">
