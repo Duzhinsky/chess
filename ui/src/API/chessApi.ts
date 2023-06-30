@@ -11,6 +11,7 @@ export const chessApi = createApi({
       return headers
     },
   }),
+  tagTypes: ["figures"],
   endpoints: (build) => ({
     createSession: build.mutation<SessionDto, void>({
       query: () => ({
@@ -37,8 +38,10 @@ export const chessApi = createApi({
           console.log(error)
         }
       },
+      providesTags: (_) => ["figures"],
     }),
-    move: build.mutation<SessionDto, { id: string; move: MoveDto }>({
+
+    makeMove: build.mutation<SessionDto, { id: string; move: MoveDto }>({
       query: (p: { id: string; move: MoveDto }) => ({
         url: `session/${p.id}/move`,
         method: "POST",
@@ -52,8 +55,13 @@ export const chessApi = createApi({
           console.log(error)
         }
       },
+      invalidatesTags: ["figures"],
     }),
   }),
 })
 
-export const { useCreateSessionMutation, useGetSessionQuery } = chessApi
+export const {
+  useCreateSessionMutation,
+  useGetSessionQuery,
+  useMakeMoveMutation,
+} = chessApi

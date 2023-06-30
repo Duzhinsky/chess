@@ -1,8 +1,8 @@
 import { FC, Fragment } from "react"
 import Cell from "./Cell"
 import { useActions, useAppSelector } from "../hooks/reduxHooks"
-import { PositionDto } from "../generated/api"
-import { useGetSessionQuery } from "../API/chessApi"
+import { Color, FigureType, MoveType, PositionDto } from "../generated/api"
+import { useGetSessionQuery, useMakeMoveMutation } from "../API/chessApi"
 
 const Board: FC = () => {
   const { cells } = useAppSelector((state) => state.cells)
@@ -14,9 +14,18 @@ const Board: FC = () => {
   const id = "b7991772-6db1-43ec-8758-66837d6351dc"
   const { data: sessionData } = useGetSessionQuery(id)
 
+  const [makeMove, {}] = useMakeMoveMutation()
+
   const clickHandler = (position: PositionDto) => {
     if (cells[position.y][position.x].available) {
-      // make a request
+      makeMove({
+        id,
+        move: {
+          type: MoveType.STEP,
+          figure: { type: FigureType.PAWN, position, color: Color.WHITE },
+          to: position,
+        },
+      })
     }
 
     setSelectedCell(position)

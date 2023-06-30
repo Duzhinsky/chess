@@ -1,13 +1,13 @@
-import { useEffect } from "react"
+import { useLayoutEffect } from "react"
 import { useCreateSessionMutation } from "../API/chessApi"
 import Board from "../components/Board"
 
 const Game = () => {
   const [createSession] = useCreateSessionMutation()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     createSession()
-  }, []) //eslint-disable-line
+  }, [createSession])
 
   return (
     <div className="game">
