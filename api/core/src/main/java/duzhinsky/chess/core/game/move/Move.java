@@ -7,10 +7,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-@EqualsAndHashCode
+@EqualsAndHashCode(of = {"id"})
 @ToString
 @Getter
 public abstract class Move {
+
+    private final String id;
 
     protected final MoveType type;
 
@@ -18,7 +20,8 @@ public abstract class Move {
 
     protected final Position to;
 
-    public Move(MoveType type, Figure figure, Position to) {
+    public Move(String id, MoveType type, Figure figure, Position to) {
+        this.id = id;
         this.type = type;
         this.figure = figure;
         this.to = to;

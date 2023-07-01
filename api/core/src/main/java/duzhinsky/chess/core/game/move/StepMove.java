@@ -13,12 +13,12 @@ import lombok.ToString;
 @Getter
 public class StepMove extends Move {
 
-    public StepMove(Figure figure, Position to) {
-        super(MoveType.STEP, figure, to);
+    public StepMove(String id, Figure figure, Position to) {
+        super(id, MoveType.STEP, figure, to);
     }
 
-    protected StepMove(MoveType type, Figure figure, Position to) {
-        super(type, figure, to);
+    protected StepMove(String id, MoveType type, Figure figure, Position to) {
+        super(id, type, figure, to);
     }
 
     @Override

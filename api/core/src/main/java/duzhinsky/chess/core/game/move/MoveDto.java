@@ -2,13 +2,15 @@ package duzhinsky.chess.core.game.move;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import duzhinsky.chess.core.game.PositionDto;
-import duzhinsky.chess.core.game.board.Board;
 import duzhinsky.chess.core.game.figure.FigureDto;
 import duzhinsky.chess.core.game.figure.FigureType;
+
 import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 public record MoveDto(
+
+    String id,
 
     MoveType type,
 
@@ -25,6 +27,7 @@ public record MoveDto(
 
     public static MoveDto fromMove(Move move) {
         return new MoveDto(
+            move.getId(),
             move.getType(),
             FigureDto.fromFigure(move.getFigure()),
             PositionDto.fromPosition(move.getTo()),
@@ -41,21 +44,5 @@ public record MoveDto(
                     ? turningMove.getTurnInto() : null
             )
         );
-    }
-
-    public Move toMove(Board board) {
-        var figureModel = figure.toFigure(board);
-        return switch (type) {
-            case STEP ->
-                new StepMove(figureModel, to.toPosition());
-            case TAKING ->
-                new TakingMove(figureModel, taken.orElseThrow().toFigure(board));
-            case TURNING ->
-                new TurningMove(figureModel, turnInto.orElseThrow(), to.toPosition());
-            case CASTLING ->
-                new CastlingMove(figureModel, rook.orElseThrow().toFigure(board));
-            case EN_PASSANT ->
-                new EnPassantMove(figureModel, taken.orElseThrow().toFigure(board));
-        };
     }
 }

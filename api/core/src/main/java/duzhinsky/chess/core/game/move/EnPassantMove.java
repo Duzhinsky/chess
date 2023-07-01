@@ -13,12 +13,12 @@ import lombok.ToString;
 @Getter
 public class EnPassantMove extends TakingMove {
 
-    public EnPassantMove(Figure figure, Figure taken) {
-        super(MoveType.EN_PASSANT, figure, taken);
+    public EnPassantMove(String id, Figure figure, Figure taken) {
+        super(id, MoveType.EN_PASSANT, figure, taken);
     }
 
-    protected EnPassantMove(MoveType type, Figure figure, Figure taken) {
-        super(type, figure, taken);
+    protected EnPassantMove(String id, MoveType type, Figure figure, Figure taken) {
+        super(id, type, figure, taken);
     }
 
     @Override
