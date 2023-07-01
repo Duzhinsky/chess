@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { SessionDto } from "../generated/api"
-import { setMoves, updateSession } from "../store/reducers/CellsSlice"
+import { updateSession } from "../store/reducers/CellsSlice"
 
 export const chessApi = createApi({
   reducerPath: "chessApi",
@@ -21,7 +21,6 @@ export const chessApi = createApi({
         try {
           const { data } = await queryFulfilled
           dispatch(updateSession(data))
-          dispatch(setMoves(data.possibleMoves))
         } catch (error) {
           console.log(error)
         }
@@ -34,7 +33,6 @@ export const chessApi = createApi({
         try {
           const { data } = await queryFulfilled
           dispatch(updateSession(data))
-          dispatch(setMoves(data.possibleMoves))
         } catch (error) {
           console.log(error)
         }
