@@ -4,13 +4,12 @@ import duzhinsky.chess.core.game.Color;
 import duzhinsky.chess.core.game.Position;
 import duzhinsky.chess.core.game.board.Board;
 import duzhinsky.chess.core.game.move.Move;
-import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.PersistenceCreator;
 
+import java.util.List;
+
 @Data
-@AllArgsConstructor
 public class Figure {
 
     private Position position;
@@ -28,6 +27,13 @@ public class Figure {
     }
 
     @PersistenceCreator
+    public Figure(Position position, Color color, FigureType type, int lastMoveIteration) {
+        this.position = position;
+        this.color = color;
+        this.type = type;
+        this.lastMoveIteration = lastMoveIteration;
+    }
+
     public Figure(Position position, Color color, FigureType type) {
         this(position, color, type, NOT_MOVED);
     }
@@ -36,7 +42,7 @@ public class Figure {
         return lastMoveIteration == NOT_MOVED;
     }
 
-    public List<Move> getPossibleMoves(Board board) {
+    public List<Move> calculatePossibleMoves(Board board) {
         return type.getProcessor().getPossibleMoves(this, board);
     }
 
