@@ -13,12 +13,12 @@ import lombok.ToString;
 @Getter
 public class CastlingMove extends Move {
 
-    public CastlingMove(Figure figure, Figure rook) {
-        this(MoveType.CASTLING, figure, rook);
+    public CastlingMove(String id, Figure figure, Figure rook) {
+        this(id, MoveType.CASTLING, figure, rook);
     }
 
-    protected CastlingMove(MoveType type, Figure figure, Figure rook) {
-        super(type, figure, new Position(getKingTo(figure, rook), figure.getPosition().getY()));
+    protected CastlingMove(String id, MoveType type, Figure figure, Figure rook) {
+        super(id, type, figure, new Position(getKingTo(figure, rook), figure.getPosition().getY()));
         this.rook = rook;
     }
 
