@@ -8,6 +8,7 @@ import duzhinsky.chess.core.game.figure.FigureType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.data.annotation.PersistenceCreator;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString
@@ -21,7 +22,8 @@ public class TurningMove extends StepMove {
         this.turnInto = turnInto;
     }
 
-    protected TurningMove(String id, MoveType type, Figure figure, FigureType turnInto, Position to) {
+    @PersistenceCreator
+    public TurningMove(String id, MoveType type, Figure figure, FigureType turnInto, Position to) {
         super(id, type, figure, to);
         this.turnInto = turnInto;
     }

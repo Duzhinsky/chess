@@ -5,7 +5,6 @@ import duzhinsky.chess.core.game.Color;
 import duzhinsky.chess.core.game.Position;
 import duzhinsky.chess.core.game.figure.Figure;
 import duzhinsky.chess.core.game.move.Move;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.PersistenceCreator;
@@ -16,7 +15,6 @@ import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Board {
 
     private int iteration;
@@ -28,19 +26,21 @@ public class Board {
     Set<Move> possibleMoves;
 
     @PersistenceCreator
-    public Board(int iteration, Color actingColor, Map<Position, Figure> figures) {
+    public Board(int iteration, Color actingColor, Map<Position, Figure> figures, Set<Move> possibleMoves) {
         this.iteration = iteration;
         this.actingColor = actingColor;
         this.figures = figures;
-        this.possibleMoves = calculatePossibleMoves(figures.values());
+        this.possibleMoves = possibleMoves;
     }
 
     public Board(int iteration, List<Figure> figures) {
         this(
             iteration,
             Color.WHITE,
-            figures.stream().collect(Collectors.toMap(Figure::getPosition, Function.identity()))
+            figures.stream().collect(Collectors.toMap(Figure::getPosition, Function.identity())),
+                null
         );
+        this.possibleMoves = calculatePossibleMoves(figures);
     }
 
     public Board(List<Figure> figures) {
@@ -77,6 +77,7 @@ public class Board {
             throw new IllegalMoveException("The move is not allowed on the board");
         }
         move.apply(this);
+        this.possibleMoves = calculatePossibleMoves(figures.values());
     }
 
     public boolean isMovePossible(Move move) {

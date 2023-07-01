@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-@EqualsAndHashCode(of = {"id"})
+@EqualsAndHashCode
 @ToString
 @Getter
 public abstract class Move {

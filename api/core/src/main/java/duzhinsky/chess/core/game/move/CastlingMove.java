@@ -7,6 +7,7 @@ import duzhinsky.chess.core.game.figure.Figure;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.data.annotation.PersistenceCreator;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString
@@ -17,7 +18,8 @@ public class CastlingMove extends Move {
         this(id, MoveType.CASTLING, figure, rook);
     }
 
-    protected CastlingMove(String id, MoveType type, Figure figure, Figure rook) {
+    @PersistenceCreator
+    public CastlingMove(String id, MoveType type, Figure figure, Figure rook) {
         super(id, type, figure, new Position(getKingTo(figure, rook), figure.getPosition().getY()));
         this.rook = rook;
     }
