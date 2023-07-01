@@ -7,10 +7,11 @@ export const initCells = (): Cell[][] => {
     const row: Cell[] = []
     for (let x = 0; x < 8; x++) {
       row.push({
-        position: { x: x, y: y },
+        position: { x, y },
         figure: null,
         color: (y + x) % 2 ? Color.BLACK : Color.WHITE,
         available: false,
+        moveId: "",
       })
     }
     cells.push(row)

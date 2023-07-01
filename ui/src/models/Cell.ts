@@ -6,4 +6,5 @@ export interface Cell {
   figure: Figure | null
   color: Color
   available: boolean
+  moveId: string
 }
