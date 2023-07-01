@@ -7,6 +7,7 @@ import duzhinsky.chess.core.game.figure.FigureType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.data.annotation.PersistenceCreator;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString
@@ -17,7 +18,8 @@ public class EnPassantMove extends TakingMove {
         super(id, MoveType.EN_PASSANT, figure, taken);
     }
 
-    protected EnPassantMove(String id, MoveType type, Figure figure, Figure taken) {
+    @PersistenceCreator
+    public EnPassantMove(String id, MoveType type, Figure figure, Figure taken) {
         super(id, type, figure, taken);
     }
 

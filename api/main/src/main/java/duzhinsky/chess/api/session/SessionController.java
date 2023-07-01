@@ -70,7 +70,7 @@ public class SessionController {
     public SessionDto makeMove(@PathVariable("id") String sessionId, @RequestParam String moveId) {
        var session = sessionManager.findSessionById(sessionId);
        var move = session.getBoard().getPossibleMoves().stream()
-               .filter(m -> !Objects.equals(m.getId(), moveId))
+               .filter(m -> Objects.equals(m.getId(), moveId))
                .findFirst()
                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Move not found"));
        return SessionDto.fromEntity(
