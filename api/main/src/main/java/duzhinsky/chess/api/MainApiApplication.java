@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Import;
 public class MainApiApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(MainApiApplication.class, args);
     }
 }
