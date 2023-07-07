@@ -6,12 +6,13 @@ import duzhinsky.chess.core.game.move.Move;
 import duzhinsky.chess.core.session.Session;
 import duzhinsky.chess.core.session.SessionRepository;
 import duzhinsky.chess.core.session.SessionStatus;
-import java.util.Map;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Map;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +39,7 @@ public class SessionManager {
     }
 
     public Session makeMove(Session session, Move move) {
-        move.apply(session.getBoard());
+        session.getBoard().applyMove(move);
         sessionRepository.save(session);
         return session;
     }

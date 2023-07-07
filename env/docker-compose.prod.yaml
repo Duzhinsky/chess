@@ -1,0 +1,22 @@
+version: '3'
+services:
+
+  main:
+    restart: always
+    env_file:
+      - prod.env
+      - .env
+    container_name: main
+    image: duzhinsky/chess:main-prod
+    depends_on:
+      - mongodb
+
+  wsserver:
+    restart: always
+    env_file:
+      - prod.env
+      - .env
+    container_name: wsserver
+    image: duzhinsky/chess:wsserver-prod
+    depends_on:
+      - mongodb

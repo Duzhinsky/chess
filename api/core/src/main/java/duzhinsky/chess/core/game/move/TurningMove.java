@@ -8,6 +8,7 @@ import duzhinsky.chess.core.game.figure.FigureType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.data.annotation.PersistenceCreator;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString
@@ -16,13 +17,14 @@ public class TurningMove extends StepMove {
 
     protected final FigureType turnInto;
 
-    public TurningMove(Figure figure, FigureType turnInto, Position to) {
-        super(MoveType.TURNING, figure, to);
+    public TurningMove(String id, Figure figure, FigureType turnInto, Position to) {
+        super(id, MoveType.TURNING, figure, to);
         this.turnInto = turnInto;
     }
 
-    protected TurningMove(MoveType type, Figure figure, FigureType turnInto, Position to) {
-        super(type, figure, to);
+    @PersistenceCreator
+    public TurningMove(String id, MoveType type, Figure figure, FigureType turnInto, Position to) {
+        super(id, type, figure, to);
         this.turnInto = turnInto;
     }
 
@@ -32,6 +34,8 @@ public class TurningMove extends StepMove {
             throw new IllegalMoveException(
                 "Can't do turning here. The figure is not a pawn or is not on the last horizontal.");
         }
+        figure.setType(turnInto);
+        board.moveFigure(figure, to);
     }
 
     @Override

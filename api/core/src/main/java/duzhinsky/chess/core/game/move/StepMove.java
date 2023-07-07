@@ -7,18 +7,20 @@ import duzhinsky.chess.core.game.figure.Figure;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.data.annotation.PersistenceCreator;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString
 @Getter
 public class StepMove extends Move {
 
-    public StepMove(Figure figure, Position to) {
-        super(MoveType.STEP, figure, to);
+    public StepMove(String id, Figure figure, Position to) {
+        super(id, MoveType.STEP, figure, to);
     }
 
-    protected StepMove(MoveType type, Figure figure, Position to) {
-        super(type, figure, to);
+    @PersistenceCreator
+    public StepMove(String id, MoveType type, Figure figure, Position to) {
+        super(id, type, figure, to);
     }
 
     @Override

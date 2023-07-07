@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { MoveDto, SessionDto } from "../generated/api"
-import { updateFigures } from "../store/reducers/CellsSlice"
+import { SessionDto } from "../generated/api"
+import { updateSession } from "../store/reducers/CellsSlice"
 
 export const chessApi = createApi({
   reducerPath: "chessApi",
@@ -20,7 +20,7 @@ export const chessApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled
-          dispatch(updateFigures(data.board))
+          dispatch(updateSession(data))
         } catch (error) {
           console.log(error)
         }
@@ -32,23 +32,22 @@ export const chessApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled
-          dispatch(updateFigures(data.board))
+          dispatch(updateSession(data))
         } catch (error) {
           console.log(error)
         }
       },
     }),
-
-    move: build.mutation<SessionDto, { id: string; move: MoveDto }>({
-      query: (p: { id: string; move: MoveDto }) => ({
+    makeMove: build.mutation<SessionDto, { id: string; moveId: string }>({
+      query: (p: { id: string; moveId: string }) => ({
         url: `session/${p.id}/move`,
         method: "POST",
-        body: p.move,
+        params: { moveId: p.moveId },
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled
-          dispatch(updateFigures(data.board))
+          dispatch(updateSession(data))
         } catch (error) {
           console.log(error)
         }
@@ -57,4 +56,8 @@ export const chessApi = createApi({
   }),
 })
 
-export const { useCreateSessionMutation, useGetSessionQuery } = chessApi
+export const {
+  useCreateSessionMutation,
+  useLazyGetSessionQuery,
+  useMakeMoveMutation,
+} = chessApi
