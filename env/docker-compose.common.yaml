@@ -2,7 +2,6 @@ version: '3'
 services:
 
   mongodb:
-    env_file: .env
     container_name: mongodb
     image: mongo:latest
     ports:
@@ -16,6 +15,13 @@ services:
         source: ./mongodata
         target: /data/db
 
+  keycloak:
+    container_name: keycloak
+    image: duzhinsky/chess:keycloak
+    ports:
+      - "${KEYCLOAK_PORT}:8080"
+
+
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -27,3 +33,4 @@ services:
     external_links:
       - main
       - wsserver
+      - keycloak
