@@ -5,7 +5,7 @@ import { updateSession } from "../store/reducers/CellsSlice"
 export const chessApi = createApi({
   reducerPath: "chessApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://chess.duzhinsky.ru/api",
+    baseUrl: "http://chess.duzhinsky.ru/api/",
     prepareHeaders: (headers: Headers) => {
       headers.set("pid", "123")
       return headers
@@ -38,7 +38,6 @@ export const chessApi = createApi({
         }
       },
     }),
-
     makeMove: build.mutation<SessionDto, { id: string; moveId: string }>({
       query: (p: { id: string; moveId: string }) => ({
         url: `session/${p.id}/move`,
