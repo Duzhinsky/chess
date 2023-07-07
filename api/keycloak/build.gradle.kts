@@ -4,6 +4,8 @@ plugins {
     id("io.freefair.lombok") version "8.1.0"
 }
 
+tasks.findByName("jar")?.enabled = false
+
 repositories {
     mavenCentral()
     maven { setUrl("https://jitpack.io") }
