@@ -3,7 +3,7 @@ import Board from "../components/Board"
 
 const Game: FC = () => {
   return (
-    <div className="game">
+    <div className="game page">
       <Board />
     </div>
   )

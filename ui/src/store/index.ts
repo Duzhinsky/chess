@@ -10,10 +10,8 @@ export const store = configureStore({
     [selectedCellSlice.name]: selectedCellSlice.reducer,
     [cellsSlice.name]: cellsSlice.reducer,
     [chessApi.reducerPath]: chessApi.reducer,
-    [modalSlice.name]: modalSlice.reducer,
-    [turningSlice.name]: turningSlice.reducer,
   },
-  middleware: (gdm) => gdm().concat(chessApi.middleware),
+  middleware: (gdm) => gdm().concat(chessApi.middleware, authApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>
