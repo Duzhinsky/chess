@@ -124,3 +124,24 @@ body {
 .available__beat {
   background-color: rgb(43, 114, 54);
 }
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.auth {
+  padding: 30px 30px 10px;
+
+  border-radius: 5%;
+}
+
+.auth__title {
+  margin-bottom: 20px;
+
+  font-size: 4rem;
+  color: #f0d9b5;
+}
