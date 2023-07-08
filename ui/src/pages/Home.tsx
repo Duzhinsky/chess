@@ -1,5 +1,5 @@
 const Home = () => {
-  return <h1 className="center white">Chess</h1>
+  return <h1 className="center white page">Chess</h1>
 }
 
 export default Home
