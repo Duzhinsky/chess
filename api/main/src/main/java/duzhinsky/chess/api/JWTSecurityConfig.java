@@ -11,7 +11,12 @@ public class JWTSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authz -> authz.anyRequest().authenticated())
+        http.authorizeRequests(authz -> authz//.requestMatchers(HttpMethod.GET, "/foos/**")
+//                        .hasAuthority("SCOPE_read")
+//                        .requestMatchers(HttpMethod.POST, "/foos")
+//                        .hasAuthority("SCOPE_write")
+                        .anyRequest()
+                        .authenticated())
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
         return http.build();
     }
