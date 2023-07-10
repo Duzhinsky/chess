@@ -1,36 +1,16 @@
 import { FC, Fragment, useLayoutEffect } from "react"
-import { useLazyGetSessionQuery, useMakeMoveMutation } from "../API/chessApi"
-import { PositionDto } from "../generated/api"
-import { useActions, useAppSelector } from "../hooks/reduxHooks"
+import { useLazyGetSessionQuery } from "../API/chessApi"
+import { useAppSelector } from "../hooks/reduxHooks"
 import Cell from "./Cell"
+import { useClickHandler } from "../hooks/useClickHandler"
+import { id } from "../utils/id"
 
 const Board: FC = () => {
   const cells = useAppSelector((state) => state.cells)
-  const { setSelectedCell, highlightMoves } = useActions()
-
-  const id = "0719ec61-6349-4a68-b925-8b95ac7a73b3"
 
   const [getSession] = useLazyGetSessionQuery()
 
-  const [makeMove] = useMakeMoveMutation()
-
-  const clickHandler = (position: PositionDto) => {
-    setSelectedCell(position)
-
-    highlightMoves({ x: position.x, y: position.y })
-
-    if (cells.cells[position.y][position.x].available) {
-      const indexId = cells.moves.findIndex(
-        (move) => move.to.x === position.x && move.to.y === position.y
-      )
-      makeMove({
-        id,
-        moveId: cells.moves[indexId].id,
-      })
-
-      setSelectedCell(null)
-    }
-  }
+  const clickHandler = useClickHandler()
 
   useLayoutEffect(() => {
     getSession(id)
