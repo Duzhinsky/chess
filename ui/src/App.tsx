@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom"
-import "./App.css"
 import Game from "./pages/Game"
 import Home from "./pages/Home"
 import Nav from "./components/Nav"
+import "./App.css"
 
 function App() {
   return (

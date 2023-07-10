@@ -1,13 +1,8 @@
 import { initCells } from "./../../utils/initCells"
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { MoveDto, PositionDto, SessionDto } from "../../generated/api"
+import { PositionDto, SessionDto } from "../../generated/api"
 import { makeFigure } from "../../models/Figure"
-import { Cell } from "../../models/Cell"
-
-export interface CellsState {
-  cells: Cell[][]
-  moves: MoveDto[]
-}
+import { CellsState } from "../../models"
 
 const initialState: CellsState = { cells: initCells(), moves: [] }
 
@@ -43,5 +38,5 @@ export const cellsSlice = createSlice({
     },
   },
 })
+
 export const { updateSession } = cellsSlice.actions
-export default cellsSlice.reducer

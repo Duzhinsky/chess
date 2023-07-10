@@ -1,6 +1,7 @@
+import { FC } from "react"
 import Board from "../components/Board"
 
-const Game = () => {
+const Game: FC = () => {
   return (
     <div className="game">
       <Board />
