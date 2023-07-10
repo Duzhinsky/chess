@@ -1,12 +1,8 @@
 import { FC, Fragment, useLayoutEffect } from "react"
-import Cell from "./Cell"
-import { useActions, useAppSelector } from "../hooks/reduxHooks"
+import { useLazyGetSessionQuery, useMakeMoveMutation } from "../API/chessApi"
 import { PositionDto } from "../generated/api"
-import {
-  useCreateSessionMutation,
-  useLazyGetSessionQuery,
-  useMakeMoveMutation,
-} from "../API/chessApi"
+import { useActions, useAppSelector } from "../hooks/reduxHooks"
+import Cell from "./Cell"
 
 const Board: FC = () => {
   const cells = useAppSelector((state) => state.cells)
@@ -15,8 +11,6 @@ const Board: FC = () => {
   const id = "0719ec61-6349-4a68-b925-8b95ac7a73b3"
 
   const [getSession] = useLazyGetSessionQuery()
-
-  // const [createSession] = useCreateSessionMutation()
 
   const [makeMove] = useMakeMoveMutation()
 
@@ -40,7 +34,6 @@ const Board: FC = () => {
 
   useLayoutEffect(() => {
     getSession(id)
-    // createSession()
   }, [getSession])
 
   return (
