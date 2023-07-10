@@ -14,9 +14,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
 
-    // Security
-    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
-
     // Lombok
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
