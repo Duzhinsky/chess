@@ -25,3 +25,7 @@ export interface CellProps {
 export interface SelectedCellState {
   selectedCell: PositionDto | null
 }
+
+export interface ModalState {
+  turningModal: boolean
+}
