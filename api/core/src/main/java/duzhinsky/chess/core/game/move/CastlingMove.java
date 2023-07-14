@@ -56,6 +56,7 @@ public class CastlingMove extends Move {
         if (!isLegal(board)) {
             throw new IllegalMoveException("This castling is illegal");
         }
+        super.apply(board);
 
         int kingToX = getKingTo(figure, rook);
         Position kingTo = new Position(kingToX, figure.getPosition().getY());

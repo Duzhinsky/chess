@@ -28,6 +28,7 @@ public class StepMove extends Move {
         if (!isLegal(board)) {
             throw new IllegalMoveException("Can't do step move to taken cell");
         }
+        super.apply(board);
 
         board.moveFigure(figure, to);
     }

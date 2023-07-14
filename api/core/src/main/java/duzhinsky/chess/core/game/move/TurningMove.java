@@ -34,8 +34,8 @@ public class TurningMove extends StepMove {
             throw new IllegalMoveException(
                 "Can't do turning here. The figure is not a pawn or is not on the last horizontal.");
         }
+        super.apply(board);
         figure.setType(turnInto);
-        board.moveFigure(figure, to);
     }
 
     @Override
