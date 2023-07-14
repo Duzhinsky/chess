@@ -6,6 +6,8 @@ on:
       - master
     paths:
       - 'api/main/**'
+      - 'api/core/**'
+      - '.github/workflows/**'
 
 jobs:
   build-and-push:
