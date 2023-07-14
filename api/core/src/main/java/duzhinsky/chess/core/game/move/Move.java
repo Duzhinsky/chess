@@ -29,5 +29,7 @@ public abstract class Move {
 
     public abstract boolean isLegal(Board board);
 
-    public abstract void apply(Board board);
+    public void apply(Board board) {
+        figure.setLastMoveIteration(board.getIteration());
+    }
 }
