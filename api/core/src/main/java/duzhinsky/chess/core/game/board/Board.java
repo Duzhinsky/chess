@@ -77,7 +77,13 @@ public class Board {
             throw new IllegalMoveException("The move is not allowed on the board");
         }
         move.apply(this);
+        nextIteration();
         this.possibleMoves = calculatePossibleMoves(figures.values());
+    }
+
+    private void nextIteration() {
+        this.iteration += 1;
+        this.actingColor = this.iteration % 2 == 0 ? Color.WHITE : Color.BLACK;
     }
 
     public boolean isMovePossible(Move move) {
@@ -93,7 +99,16 @@ public class Board {
             Figure.pawn(new Position(4, 1), Color.WHITE),
             Figure.pawn(new Position(5, 1), Color.WHITE),
             Figure.pawn(new Position(6, 1), Color.WHITE),
-            Figure.pawn(new Position(7, 1), Color.WHITE)
+            Figure.pawn(new Position(7, 1), Color.WHITE),
+
+                Figure.pawn(new Position(0, 6), Color.BLACK),
+                Figure.pawn(new Position(1, 6), Color.BLACK),
+                Figure.pawn(new Position(2, 6), Color.BLACK),
+                Figure.pawn(new Position(3, 6), Color.BLACK),
+                Figure.pawn(new Position(4, 6), Color.BLACK),
+                Figure.pawn(new Position(5, 6), Color.BLACK),
+                Figure.pawn(new Position(6, 6), Color.BLACK),
+                Figure.pawn(new Position(7, 6), Color.BLACK)
         )
     );
 

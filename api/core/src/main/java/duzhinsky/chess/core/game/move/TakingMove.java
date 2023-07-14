@@ -31,6 +31,7 @@ public class TakingMove extends Move {
         if (!isLegal(board)) {
             throw new IllegalMoveException("Can't do taking here. Figure on board is absent or does not matches argument");
         }
+        super.apply(board);
 
         board.moveFigure(figure, taken.getPosition());
     }
