@@ -47,18 +47,18 @@ public class PawnProcessor extends FigureProcessor {
                 .filter(move -> move.isLegal(board));
 
         Stream<Move> filteredMoves = Stream.concat(stepMoves, Stream.concat(takingMoves, enPassantMoves))
-                .filter(m -> isNotLast(figure, m.getTo()));
+                .flatMap(m -> {
+                    if (!isNotLast(figure, m.getTo())) {
+                        return Stream.of(
+                                new TurningMove(UUID.randomUUID().toString(), m, FigureType.ROOK),
+                                new TurningMove(UUID.randomUUID().toString(), m, FigureType.BISHOP),
+                                new TurningMove(UUID.randomUUID().toString(), m, FigureType.KNIGHT),
+                                new TurningMove(UUID.randomUUID().toString(), m, FigureType.QUEEN)
+                        );
+                    } else return Stream.of(m);
+                });
 
-        Stream<Move> turnings = Stream.concat(stepMoves, Stream.concat(takingMoves, enPassantMoves))
-                .filter(m -> !isNotLast(figure, m.getTo()))
-                .flatMap(o -> Stream.of(
-                        new TurningMove(UUID.randomUUID().toString(), o, FigureType.ROOK),
-                        new TurningMove(UUID.randomUUID().toString(), o, FigureType.BISHOP),
-                        new TurningMove(UUID.randomUUID().toString(), o, FigureType.KNIGHT),
-                        new TurningMove(UUID.randomUUID().toString(), o, FigureType.QUEEN)
-                ));
-
-        return Stream.concat(filteredMoves, turnings).toList();
+        return filteredMoves.toList();
     }
 
     private boolean isNotLast(Figure figure, Position position) {
