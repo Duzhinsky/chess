@@ -44,8 +44,8 @@ public class TurningMove extends Move {
 
     @Override
     public boolean isLegal(Board board) {
-        return to.getY() != figure.getColor().getOpponentHorizontal()
-            && figure.getType() != FigureType.PAWN
+        return to.getY() == figure.getColor().getOpponentHorizontal()
+            && figure.getType() == FigureType.PAWN
             && other.isLegal(board);
     }
 }
