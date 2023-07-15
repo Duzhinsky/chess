@@ -5,11 +5,13 @@ import duzhinsky.chess.core.game.Position;
 import duzhinsky.chess.core.game.board.Board;
 import duzhinsky.chess.core.game.move.Move;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.PersistenceCreator;
 
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(of={"type", "position"})
 public class Figure {
 
     private Position position;
