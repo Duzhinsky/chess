@@ -6,7 +6,7 @@ public enum FigureType {
     KNIGHT(null),
     PAWN(new PawnProcessor()),
     QUEEN(null),
-    ROCK(null);
+    ROOK(null);
 
     private final FigureProcessor processor;
 
