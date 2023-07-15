@@ -25,7 +25,7 @@ const figureIcons: IconMap = {
     [Color.WHITE]: whitePawn,
     [Color.BLACK]: blackPawn,
   },
-  [FigureType.ROCK]: {
+  [FigureType.ROOK]: {
     [Color.WHITE]: whiteRook,
     [Color.BLACK]: blackRook,
   },

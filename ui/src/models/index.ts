@@ -29,3 +29,7 @@ export interface SelectedCellState {
 export interface ModalState {
   turningModal: boolean
 }
+
+export interface TurningState {
+  moves: MoveDto[]
+}

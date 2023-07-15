@@ -19,7 +19,7 @@ const Cell: FC<CellProps> = ({
           "cell",
           color.toLowerCase(),
           selected?.x === position.x && selected?.y === position.y && "select",
-          available && "available",
+          selected && available && "available",
         ].join(" ")}
         onClick={() => clickHandler(position)}
       >

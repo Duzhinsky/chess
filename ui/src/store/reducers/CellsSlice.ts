@@ -12,8 +12,7 @@ export const cellsSlice = createSlice({
   reducers: {
     updateSession: (state, action: PayloadAction<SessionDto>) => {
       state.cells = initCells()
-      //eslint-disable-next-line
-      action.payload.board.figures.map((figure) => {
+      action.payload.board.figures.forEach((figure) => {
         state.cells[figure.position.y][figure.position.x].figure = makeFigure(
           figure.color,
           figure.type
@@ -23,17 +22,12 @@ export const cellsSlice = createSlice({
     },
 
     highlightMoves: (state, action: PayloadAction<PositionDto>) => {
-      //eslint-disable-next-line
-      state.moves.map((move) => {
-        if (
-          move.figure.position.x === action.payload.x &&
-          move.figure.position.y === action.payload.y
-        ) {
-          state.cells[move.to.y][move.to.x].available =
-            !state.cells[move.to.y][move.to.x].available
-        } else {
-          state.cells[move.to.y][move.to.x].available = false
-        }
+      state.moves.forEach((move) => {
+        const { x, y } = move.figure.position
+        const cell = state.cells[move.to.y][move.to.x]
+
+        cell.available =
+          x === action.payload.x && y === action.payload.y ? true : false
       })
     },
   },
