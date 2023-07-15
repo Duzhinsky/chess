@@ -13,19 +13,23 @@ import org.springframework.data.annotation.PersistenceCreator;
 @EqualsAndHashCode(callSuper = true)
 @ToString
 @Getter
-public class TurningMove extends StepMove {
+public class TurningMove extends Move {
 
     protected final FigureType turnInto;
 
-    public TurningMove(String id, Figure figure, FigureType turnInto, Position to) {
-        super(id, MoveType.TURNING, figure, to);
+    protected final Move other;
+
+    public TurningMove(String id, Move other, FigureType turnInto) {
+        super(id, MoveType.TURNING, other.figure, other.to);
         this.turnInto = turnInto;
+        this.other = other;
     }
 
     @PersistenceCreator
-    public TurningMove(String id, MoveType type, Figure figure, FigureType turnInto, Position to) {
+    public TurningMove(String id, MoveType type, Figure figure, Position to, FigureType turnInto, Move other) {
         super(id, type, figure, to);
         this.turnInto = turnInto;
+        this.other = other;
     }
 
     @Override
@@ -34,7 +38,7 @@ public class TurningMove extends StepMove {
             throw new IllegalMoveException(
                 "Can't do turning here. The figure is not a pawn or is not on the last horizontal.");
         }
-        super.apply(board);
+        other.apply(board);
         figure.setType(turnInto);
     }
 
@@ -42,6 +46,6 @@ public class TurningMove extends StepMove {
     public boolean isLegal(Board board) {
         return Math.abs(figure.getPosition().getY() - figure.getColor().getBaseHorizontal()) == 7
             && figure.getType() != FigureType.PAWN
-            && super.isLegal(board);
+            && other.isLegal(board);
     }
 }

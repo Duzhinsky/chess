@@ -1,6 +1,7 @@
 package duzhinsky.chess.core.game.move;
 
 import duzhinsky.chess.core.IllegalMoveException;
+import duzhinsky.chess.core.game.Position;
 import duzhinsky.chess.core.game.board.Board;
 import duzhinsky.chess.core.game.figure.Figure;
 import duzhinsky.chess.core.game.figure.FigureType;
@@ -19,6 +20,10 @@ public class EnPassantMove extends TakingMove {
     }
 
     @PersistenceCreator
+    public EnPassantMove(String id, MoveType type, Figure figure, Figure taken, Position to) {
+        super(id, type, figure, taken, to);
+    }
+
     public EnPassantMove(String id, MoveType type, Figure figure, Figure taken) {
         super(id, type, figure, taken);
     }

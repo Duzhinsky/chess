@@ -20,4 +20,8 @@ public enum Color {
     public int getBaseHorizontal() {
         return baseHorizontal;
     }
+
+    public int getOpponentHorizontal() {
+        return 7 - getBaseHorizontal();
+    }
 }

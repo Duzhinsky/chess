@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 3.2.1263 on 2023-07-01 11:22:48.
+// Generated using typescript-generator version 3.2.1263 on 2023-07-15 10:15:03.
 
 export interface PositionDto {
     x: number;
@@ -39,7 +39,7 @@ export enum FigureType {
     KNIGHT = "KNIGHT",
     PAWN = "PAWN",
     QUEEN = "QUEEN",
-    ROCK = "ROCK",
+    ROOK = "ROOK",
 }
 
 export enum Color {

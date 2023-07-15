@@ -1,6 +1,7 @@
 package duzhinsky.chess.core.game.move;
 
 import duzhinsky.chess.core.IllegalMoveException;
+import duzhinsky.chess.core.game.Position;
 import duzhinsky.chess.core.game.board.Board;
 import duzhinsky.chess.core.game.figure.Figure;
 import lombok.EqualsAndHashCode;
@@ -20,9 +21,14 @@ public class TakingMove extends Move {
         this.taken = taken;
     }
 
-    @PersistenceCreator
     public TakingMove(String id, MoveType type, Figure figure, Figure taken) {
         super(id, type, figure, taken.getPosition());
+        this.taken = taken;
+    }
+
+    @PersistenceCreator
+    public TakingMove(String id, MoveType type, Figure figure, Figure taken, Position to) {
+        super(id, type, figure, to);
         this.taken = taken;
     }
 
