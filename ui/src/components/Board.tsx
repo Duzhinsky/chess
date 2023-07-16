@@ -1,7 +1,7 @@
 import { FC, Fragment, useLayoutEffect, useState } from "react"
 import { Modal, Radio } from "antd"
 import {
-  useCreateSessionMutation,
+  // useCreateSessionMutation,
   useLazyGetSessionQuery,
   useMakeMoveMutation,
 } from "../API/chessApi"
@@ -24,7 +24,7 @@ const Board: FC = () => {
   const [makeMove] = useMakeMoveMutation()
   const moves = useAppSelector(selectTurningMoves)
 
-  const [create] = useCreateSessionMutation()
+  // const [create] = useCreateSessionMutation()
 
   const clickHandler = useClickHandler(setSelectedCell, highlightMoves)
 
