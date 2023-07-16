@@ -1,17 +1,17 @@
 import { FC, Fragment, useLayoutEffect, useState } from "react"
+import { Modal, Radio } from "antd"
 import {
   useCreateSessionMutation,
   useLazyGetSessionQuery,
   useMakeMoveMutation,
 } from "../API/chessApi"
 import { useActions, useAppSelector } from "../hooks/reduxHooks"
-import Cell from "./Cell"
 import { useClickHandler } from "../hooks/useClickHandler"
 import { id } from "../utils/id"
-import { Modal, Radio } from "antd"
 import { turningList } from "../utils/turningList"
 import { FigureType } from "../generated/api"
 import { selectTurningMoves } from "../store/selectors"
+import Cell from "./Cell"
 
 const Board: FC = () => {
   const [selectedValue, setSelectedValue] = useState<FigureType | null>(null)

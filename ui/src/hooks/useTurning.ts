@@ -1,5 +1,4 @@
-import { PositionDto } from "./../generated/api"
-import { MoveDto, MoveType } from "../generated/api"
+import { PositionDto, MoveDto, MoveType } from "./../generated/api"
 
 export const useTurning = (
   position: PositionDto,

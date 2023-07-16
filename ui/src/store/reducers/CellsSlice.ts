@@ -1,8 +1,8 @@
-import { initCells } from "./../../utils/initCells"
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { PositionDto, SessionDto } from "../../generated/api"
 import { makeFigure } from "../../models/Figure"
 import { CellsState } from "../../models"
+import { initCells } from "./../../utils/initCells"
 
 const initialState: CellsState = { cells: initCells(), moves: [] }
 
