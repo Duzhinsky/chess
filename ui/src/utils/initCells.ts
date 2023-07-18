@@ -1,5 +1,5 @@
 import { Color } from "../generated/api"
-import { Cell } from "../models"
+import { Cell } from "../models/Cell"
 
 export const initCells = (): Cell[][] => {
   let cells = []

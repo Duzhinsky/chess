@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { TurningState } from "../../models"
 import { MoveDto } from "../../generated/api"
+import { TurningState } from "../../models/Turning"
 
 const initialState: TurningState = {
   moves: [],

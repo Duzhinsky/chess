@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { selectedCellSelector } from "../store/selectors"
 import { useAppSelector } from "../hooks/reduxHooks"
-import { CellProps } from "../models"
+import { CellProps } from "../models/Cell"
 
 const Cell: FC<CellProps> = ({
   figure,

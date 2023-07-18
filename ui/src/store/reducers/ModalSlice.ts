@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { ModalState } from "../../models"
+import { ModalState } from "../../models/Modal"
 
 const initialState: ModalState = {
   turningModal: false,
