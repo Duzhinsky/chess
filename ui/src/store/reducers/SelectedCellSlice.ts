@@ -1,9 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { PositionDto } from "../../generated/api"
-
-interface SelectedCellState {
-  selectedCell: PositionDto | null
-}
+import { SelectedCellState } from "../../models/Cell"
 
 const initialState: SelectedCellState = {
   selectedCell: null,
@@ -25,5 +22,3 @@ export const selectedCellSlice = createSlice({
     },
   },
 })
-
-export default selectedCellSlice.reducer

@@ -1,62 +1,88 @@
-import { FC, Fragment, useLayoutEffect } from "react"
-import Cell from "./Cell"
-import { useActions, useAppSelector } from "../hooks/reduxHooks"
-import { PositionDto } from "../generated/api"
+import { FC, Fragment, useLayoutEffect, useState } from "react"
+import { Modal, Radio } from "antd"
 import {
-  useCreateSessionMutation,
+  // useCreateSessionMutation,
   useLazyGetSessionQuery,
   useMakeMoveMutation,
 } from "../API/chessApi"
+import { useActions, useAppSelector } from "../hooks/reduxHooks"
+import { useClickHandler } from "../hooks/useClickHandler"
+import { id } from "../utils/id"
+import { turningList } from "../utils/turningList"
+import { FigureType } from "../generated/api"
+import { selectTurningMoves } from "../store/selectors"
+import Cell from "./Cell"
 
 const Board: FC = () => {
-  const cells = useAppSelector((state) => state.cells)
-  const { setSelectedCell, highlightMoves } = useActions()
+  const [selectedValue, setSelectedValue] = useState<FigureType | null>(null)
 
-  const id = "0719ec61-6349-4a68-b925-8b95ac7a73b3"
+  const cells = useAppSelector((state) => state.cells)
+  const turningModal = useAppSelector((state) => state.modal.turningModal)
+  const { setSelectedCell, highlightMoves, toggleTurningModal } = useActions()
 
   const [getSession] = useLazyGetSessionQuery()
-
-  // const [createSession] = useCreateSessionMutation()
-
   const [makeMove] = useMakeMoveMutation()
+  const moves = useAppSelector(selectTurningMoves)
 
-  const clickHandler = (position: PositionDto) => {
-    setSelectedCell(position)
+  // const [create] = useCreateSessionMutation()
 
-    highlightMoves({ x: position.x, y: position.y })
+  const clickHandler = useClickHandler(setSelectedCell, highlightMoves)
 
-    if (cells.cells[position.y][position.x].available) {
-      const indexId = cells.moves.findIndex(
-        (move) => move.to.x === position.x && move.to.y === position.y
-      )
-      makeMove({
-        id,
-        moveId: cells.moves[indexId].id,
-      })
+  const handleOk = (selectedValue: FigureType) => {
+    const move = moves.find((move) => move.turnInto === selectedValue)
+    makeMove({ id, moveId: move!.id })
 
-      setSelectedCell(null)
-    }
+    toggleTurningModal()
+    setSelectedCell(null)
+  }
+
+  const handleCancel = () => {
+    toggleTurningModal()
+    setSelectedCell(null)
   }
 
   useLayoutEffect(() => {
     getSession(id)
-    // createSession()
+    // create()
   }, [getSession])
 
   return (
-    <div className="board">
-      {cells.cells.map((row, index) => (
-        <Fragment key={index}>
-          {row.map((cell) => (
-            <Cell
-              key={JSON.stringify(cell.position)}
-              {...cell}
-              clickHandler={clickHandler}
-            />
-          ))}
-        </Fragment>
-      ))}
-    </div>
+    <>
+      <div className="board">
+        {cells.cells.map((row, index) => (
+          <Fragment key={index}>
+            {row.map((cell) => (
+              <Cell
+                key={JSON.stringify(cell.position)}
+                {...cell}
+                clickHandler={() => clickHandler(cell.position)}
+              />
+            ))}
+          </Fragment>
+        ))}
+      </div>
+
+      {turningModal && (
+        <Modal
+          title="Choose the figure"
+          open={turningModal}
+          onOk={() => handleOk(selectedValue!)}
+          onCancel={() => handleCancel()}
+          centered
+        >
+          <Radio.Group
+            name="radiogroup"
+            onChange={(e) => setSelectedValue(e.target.value)}
+          >
+            {turningList.map((figure) => (
+              <Radio key={figure} value={figure}>
+                {figure}
+              </Radio>
+            ))}
+          </Radio.Group>
+        </Modal>
+      )}
+    </>
   )
 }
 

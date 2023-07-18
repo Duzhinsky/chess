@@ -1,6 +1,7 @@
+import { FC } from "react"
 import { Link } from "react-router-dom"
 
-const Nav = () => {
+const Nav: FC = () => {
   return (
     <div className="nav">
       <Link className="nav__item" to="/">

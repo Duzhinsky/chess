@@ -1,3 +1,4 @@
+import { Color, FigureType } from "../generated/api"
 import whitePawn from "../figures/whitePawn.svg"
 import blackPawn from "../figures/blackPawn.svg"
 import whiteRook from "../figures/whiteRook.svg"
@@ -10,7 +11,6 @@ import whiteQueen from "../figures/whiteQueen.svg"
 import blackQueen from "../figures/blackQueen.svg"
 import whiteKing from "../figures/whiteKing.svg"
 import blackKing from "../figures/blackKing.svg"
-import { Color, FigureType } from "../generated/api"
 
 type ColorMap = {
   [key in Color]: string
@@ -25,7 +25,7 @@ const figureIcons: IconMap = {
     [Color.WHITE]: whitePawn,
     [Color.BLACK]: blackPawn,
   },
-  [FigureType.ROCK]: {
+  [FigureType.ROOK]: {
     [Color.WHITE]: whiteRook,
     [Color.BLACK]: blackRook,
   },

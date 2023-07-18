@@ -1,16 +1,7 @@
 import { FC } from "react"
-import { Figure } from "../models/Figure"
-import { Color, PositionDto } from "../generated/api"
-import { useAppSelector } from "../hooks/reduxHooks"
 import { selectedCellSelector } from "../store/selectors"
-
-export interface CellProps {
-  position: PositionDto
-  figure: Figure | null
-  color: Color
-  available: boolean
-  clickHandler: (position: PositionDto) => void
-}
+import { useAppSelector } from "../hooks/reduxHooks"
+import { CellProps } from "../models/Cell"
 
 const Cell: FC<CellProps> = ({
   figure,
@@ -28,7 +19,7 @@ const Cell: FC<CellProps> = ({
           "cell",
           color.toLowerCase(),
           selected?.x === position.x && selected?.y === position.y && "select",
-          available && "available",
+          selected && available && "available",
         ].join(" ")}
         onClick={() => clickHandler(position)}
       >
