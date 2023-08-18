@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { chessApi } from "../API/chessApi"
+import { authApi } from "../API/authApi"
 import { selectedCellSlice } from "./reducers/SelectedCellSlice"
 import { cellsSlice } from "./reducers/CellsSlice"
 import { modalSlice } from "./reducers/ModalSlice"
@@ -10,8 +11,10 @@ export const store = configureStore({
     [selectedCellSlice.name]: selectedCellSlice.reducer,
     [cellsSlice.name]: cellsSlice.reducer,
     [chessApi.reducerPath]: chessApi.reducer,
+    [modalSlice.name]: modalSlice.reducer,
+    [turningSlice.name]: turningSlice.reducer,
   },
-  middleware: (gdm) => gdm().concat(chessApi.middleware, authApi.middleware),
+  middleware: (gdm) => gdm().concat(chessApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>

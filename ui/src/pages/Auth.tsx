@@ -1,4 +1,4 @@
-import { Input, Checkbox, Button, Form, Card } from "antd"
+import { Input, Checkbox, Button, Form } from "antd"
 import { FC } from "react"
 import { useLoginMutation } from "../API/authApi"
 import { LoginRequest } from "../models"
