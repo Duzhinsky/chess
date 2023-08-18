@@ -13,6 +13,7 @@ export const store = configureStore({
     [chessApi.reducerPath]: chessApi.reducer,
     [modalSlice.name]: modalSlice.reducer,
     [turningSlice.name]: turningSlice.reducer,
+    [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (gdm) => gdm().concat(chessApi.middleware, authApi.middleware),
 })
