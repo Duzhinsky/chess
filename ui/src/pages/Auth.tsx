@@ -2,6 +2,7 @@ import { Input, Checkbox, Button, Form } from "antd"
 import { FC } from "react"
 import { useLoginMutation } from "../API/authApi"
 import { LoginRequest } from "../models"
+import vk_icon from "../icons/vk.svg"
 
 const Auth: FC = () => {
   const [login] = useLoginMutation()
@@ -37,33 +38,16 @@ const Auth: FC = () => {
         className="auth white"
       >
         <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
         >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
-        >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{ offset: 8, span: 16 }}
-        >
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
+          <div>Login with:</div>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+            <img src={vk_icon} alt="auth with vk" />
+          </a>
         </Form.Item>
       </Form>
     </div>
