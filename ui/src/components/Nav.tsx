@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
 import { useActions } from "../hooks/reduxHooks"
+import { usePath } from "../hooks/usePath"
 import MyBtn from "./UI/MyBtn"
 
 const Nav: FC = () => {
@@ -10,21 +11,26 @@ const Nav: FC = () => {
     toggleAuthModal()
   }
 
+  const path = usePath()
+
   return (
     <div className="nav">
-      <MyBtn
-        title={"Login"}
-        onClick={() => clickHandler()}
-        className={"nav__item"}
-      />
-      <div>
-        <Link className="nav__item" to="/">
-          Home
-        </Link>
+      <MyBtn onClick={() => clickHandler()} className={"nav__item"}>
+        Login
+      </MyBtn>
+
+      <Link className=" brand" to="/">
+        Chess
+      </Link>
+      {path === "/" ? (
         <Link className="nav__item" to="/game">
           Game
         </Link>
-      </div>
+      ) : (
+        <Link className="nav__item" to="/">
+          Home
+        </Link>
+      )}
     </div>
   )
 }

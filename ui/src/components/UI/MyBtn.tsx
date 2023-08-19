@@ -1,10 +1,10 @@
 import { FC } from "react"
 import { MyBtnProps } from "../../models/UI"
 
-const MyBtn: FC<MyBtnProps> = ({ title, onClick, ...rest }) => {
+const MyBtn: FC<MyBtnProps> = ({ children, onClick, ...rest }) => {
   return (
     <button onClick={() => onClick()} {...rest}>
-      {title}
+      {children}
     </button>
   )
 }

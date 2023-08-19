@@ -1,6 +1,6 @@
 import React from "react"
 import { Modal, Form, Button } from "antd"
-import vk_icon from "../icons/vk.svg"
+import vk_icon from "../imgs/icons/vk.svg"
 import { AuthModalProps } from "../models/Modal"
 
 const AuthModal: React.FC<AuthModalProps> = ({ open, onCancel }) => {

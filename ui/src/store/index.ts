@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { chessApi } from "../API/chessApi"
 import { authApi } from "../API/authApi"
-import { authApi } from "../API/authApi"
 import { selectedCellSlice } from "./reducers/SelectedCellSlice"
 import { cellsSlice } from "./reducers/CellsSlice"
 import { modalSlice } from "./reducers/ModalSlice"
