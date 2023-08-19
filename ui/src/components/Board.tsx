@@ -62,26 +62,24 @@ const Board: FC = () => {
         ))}
       </div>
 
-      {turningModal && (
-        <Modal
-          title="Choose the figure"
-          open={turningModal}
-          onOk={() => handleOk(selectedValue!)}
-          onCancel={() => handleCancel()}
-          centered
+      <Modal
+        title="Choose the figure"
+        open={turningModal}
+        onOk={() => handleOk(selectedValue!)}
+        onCancel={() => handleCancel()}
+        centered
+      >
+        <Radio.Group
+          name="radiogroup"
+          onChange={(e) => setSelectedValue(e.target.value)}
         >
-          <Radio.Group
-            name="radiogroup"
-            onChange={(e) => setSelectedValue(e.target.value)}
-          >
-            {turningList.map((figure) => (
-              <Radio key={figure} value={figure}>
-                {figure}
-              </Radio>
-            ))}
-          </Radio.Group>
-        </Modal>
-      )}
+          {turningList.map((figure) => (
+            <Radio key={figure} value={figure}>
+              {figure}
+            </Radio>
+          ))}
+        </Radio.Group>
+      </Modal>
     </>
   )
 }
