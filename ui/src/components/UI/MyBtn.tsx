@@ -1,10 +1,5 @@
 import { FC } from "react"
-
-interface MyBtnProps {
-  title: string
-  onClick: () => void
-  [propName: string]: any
-}
+import { MyBtnProps } from "../../models/UI"
 
 const MyBtn: FC<MyBtnProps> = ({ title, onClick, ...rest }) => {
   return (

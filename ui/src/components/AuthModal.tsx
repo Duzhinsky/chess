@@ -1,13 +1,9 @@
 import React from "react"
 import { Modal, Form, Button } from "antd"
 import vk_icon from "../icons/vk.svg"
+import { AuthModalProps } from "../models/Modal"
 
-interface Props {
-  open: boolean
-  onCancel: () => void
-}
-
-const AuthModal: React.FC<Props> = ({ open, onCancel }) => {
+const AuthModal: React.FC<AuthModalProps> = ({ open, onCancel }) => {
   //const { toggleAuthModal } = useActions()
   const handleVKAuth = () => {
     // Обработка авторизации через VK
