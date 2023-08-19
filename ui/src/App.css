@@ -65,7 +65,7 @@ body {
   justify-content: space-between;
   max-height: 4.2rem;
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 2rem;
 
   background-color: gray;
 }
