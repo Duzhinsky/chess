@@ -1,6 +1,7 @@
 package duzhinsky.chess.api;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 
 @EnableWebSecurity
+@Configuration
 public class SecurityConfig {
 
     @Bean
@@ -28,9 +30,7 @@ public class SecurityConfig {
                                 .and()
                                 .userInfoEndpoint().userService(customOAuth2UserService)
                                 .and()
-                                .authorizationEndpoint().baseUri("http://chess.duzhinsky.ru/api/")
-                                .and()
-                                .loginPage("http://chess.duzhinsky.ru/api/oauth2")
+                                .authorizationEndpoint(e -> e.baseUri("/api/login/oauth2/authorization"))
                 );
         return security.build();
     }
