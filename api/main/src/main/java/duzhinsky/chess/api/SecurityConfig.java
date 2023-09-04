@@ -26,7 +26,10 @@ public class SecurityConfig {
                 .oauth2Login(oa2 ->
                         oa2.tokenEndpoint().accessTokenResponseClient(accessTokenResponseClient())
                                 .and()
-                                .userInfoEndpoint().userService(customOAuth2UserService));
+                                .userInfoEndpoint().userService(customOAuth2UserService)
+                                .and()
+                                .authorizationEndpoint().baseUri("http://chess.duzhinsky.ru/api/")
+                );
         return security.build();
     }
 

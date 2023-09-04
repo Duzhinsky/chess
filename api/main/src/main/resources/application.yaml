@@ -6,13 +6,13 @@ spring:
   security:
     oauth2:
       client:
-
         provider:
           vk:
             authorization-uri: https://oauth.vk.com/authorize
             token-uri: https://oauth.vk.com/access_token
             user-info-uri: https://api.vk.com/method/users.get?v=5.52&fields=photo_max
             user-name-attribute: first_name
+
         registration:
           vk:
             provider: vk
@@ -21,6 +21,3 @@ spring:
             authorization-grant-type: authorization_code
             redirect-uri: "http://chess.duzhinsky.ru/api/oauth2/code/vk"
             scope: email
-server:
-  servlet:
-    context-path: /api
