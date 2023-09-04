@@ -8,7 +8,7 @@ const AuthModal: FC<AuthModalProps> = ({ open, onCancel }) => {
   const { data, loading, error, getAuth, logout } = useOAuth2({
     authorizeUrl: "https://oauth.vk.com/authorize",
     clientId: "51731397",
-    redirectUri: `http://chess.duzhinsky.ru/login`,
+    redirectUri: "http://chess.duzhinsky.ru/login",
     scope: "email",
     responseType: "code",
     exchangeCodeForTokenServerURL: "https://your-backend/token",
@@ -21,7 +21,7 @@ const AuthModal: FC<AuthModalProps> = ({ open, onCancel }) => {
 
   //const { toggleAuthModal } = useActions()
   const handleVKAuth = () => {
-    console.log("Submit")
+    globalThis.close()
     getAuth()
     // await Обработка авторизации через VK
     // Если всё ок toggleAuthModal()
