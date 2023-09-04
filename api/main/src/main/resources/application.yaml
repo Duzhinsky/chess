@@ -19,5 +19,5 @@ spring:
             client-id: 51731397
             client-secret: 0s4VbrE1SIYfLVD2m1z7
             authorization-grant-type: authorization_code
-            redirect-uri: "http://chess.duzhinsky.ru/api/oauth2/code/vk"
+            redirect-uri: "http://chess.duzhinsky.ru/login"
             scope: email
