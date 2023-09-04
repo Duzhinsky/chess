@@ -29,6 +29,8 @@ public class SecurityConfig {
                                 .userInfoEndpoint().userService(customOAuth2UserService)
                                 .and()
                                 .authorizationEndpoint().baseUri("http://chess.duzhinsky.ru/api/")
+                                .and()
+                                .loginPage("http://chess.duzhinsky.ru/api/oauth2")
                 );
         return security.build();
     }
