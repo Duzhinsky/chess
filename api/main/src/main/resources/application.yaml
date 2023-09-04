@@ -1,3 +1,4 @@
+
 spring:
 #  data.mongodb:
 #    database: ${MONGO_DATABASE}
@@ -5,6 +6,7 @@ spring:
   security:
     oauth2:
       client:
+
         provider:
           vk:
             authorization-uri: https://oauth.vk.com/authorize
@@ -19,4 +21,6 @@ spring:
             authorization-grant-type: authorization_code
             redirect-uri: "http://chess.duzhinsky.ru/api/oauth2/code/vk"
             scope: email
-
+server:
+  servlet:
+    context-path: /api
