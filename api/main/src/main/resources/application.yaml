@@ -1,23 +1,5 @@
 
 spring:
-#  data.mongodb:
-#    database: ${MONGO_DATABASE}
-#    uri: ${MONGO_URI}
-  security:
-    oauth2:
-      client:
-        provider:
-          vk:
-            authorization-uri: https://oauth.vk.com/authorize
-            token-uri: https://oauth.vk.com/access_token
-            user-info-uri: https://api.vk.com/method/users.get?v=5.52&fields=photo_max
-            user-name-attribute: first_name
-
-        registration:
-          vk:
-            provider: vk
-            client-id: 51731397
-            client-secret: 0s4VbrE1SIYfLVD2m1z7
-            authorization-grant-type: authorization_code
-            redirect-uri: "http://chess.duzhinsky.ru/login"
-            scope: email
+  data.mongodb:
+    database: ${MONGO_DATABASE}
+    uri: ${MONGO_URI}
